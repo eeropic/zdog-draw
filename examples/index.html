@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+		html {
+			width:100%;
+			height: 100%;
+			overflow:hidden;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100%;
+		}
+
+		.zdog-canvas {
+			width:100%;
+			height:100%;
+			background:#FDB;
+			cursor: crosshair;
+		}
+		</style>
+		<script src="/js/zdog.dist.min.js"></script>
+		<script src="/js/deviceorientation.js"></script>
+	</head>
+	<body>
+	
+		<canvas class="zdog-canvas" width="240" height="240"></canvas>
+		<script>
+			deviceOrientationData = null;
+			let isSpinning = true;
+
+			let illo = new Zdog.Illustration({
+				element: '.zdog-canvas',
+				resize: 'fullscreen'
+			});
+			
+			let rotDummy = new Zdog.Anchor({
+				addTo: illo
+			});
+
+			function animate(step) {
+				
+				if(deviceOrientationData!=null){
+					var qt=computeQuaternion()
+					
+					var angles=Quat2Angle(...qt)
+					
+					if(currentScreenOrientation==0){					
+						illo.rotate.x=-angles[2]
+						illo.rotate.y=-angles[1]
+						illo.rotate.z=-angles[0]
+					}
+					else if(currentScreenOrientation==-90){					
+						illo.rotate.x=-angles[0]
+						illo.rotate.y=angles[1]
+						illo.rotate.z=-angles[2]
+					}
+					else if(currentScreenOrientation==90){					
+						illo.rotate.x=angles[0]
+						illo.rotate.y=angles[1]
+						illo.rotate.z=-angles[2]
+					}					
+					
+					/*
+					frame=Math.floor(step/20)%illo.children.length;
+					for(var i=3;i<illo.children.length;i++){
+						var child=illo.children[i]
+						child.visible=(!child.guide)?(i>frame && !child.drawing)?false:true:true
+					}
+					*/
+					illo.updateRenderGraph();
+				}
+				requestAnimationFrame( animate );
+			}
+			animate()
+
+
+
+Number.prototype.mod = function(n) {
+    return ((this%n)+n)%n;
+};
+
+function vecLength(vec){
+	return Math.sqrt(Math.pow(vec.x,2),Math.pow(vec.y,2))
+}
+
+//world axis
+var grid = illo.width
+var axisColors=["#F00","#0F0","#00F"]
+
+for(var i=0;i<3;i++){
+	var axis=new Zdog.Shape({
+		addTo: illo,
+		path: [{ x: 0, y: 0, z:  0},{ x: (i==0)?grid:0, y: (i==1)?grid:0, z: (i==2)?grid:0 }],
+		closed: false,
+		stroke: 0.5,
+		color: axisColors[i],
+	});
+	axis.guide=true
+}	
+
+
+
+var colors=['#EE6621','#EEAA00','#663366']
+
+downCount=0
+zCount=-1
+
+prevX=0
+prevY=0
+x=0
+y=0
+
+function clamp(val,min,max){
+    return Math.max(
+        min, Math.min(max,val)
+    )
+}
+
+var dragger=new Zdog.Dragger({
+	startElement: '.zdog-canvas',
+  onDragStart(e) {
+		dragCount=0
+		
+		prevX=x
+		prevY=y
+			
+		x=e.clientX-illo.width/2
+		y=e.clientY-illo.height/2
+		/*
+		var pt={
+			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
+			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
+		}
+		*/
+		this.shape=new Zdog.Shape({
+			addTo: illo,
+			path:[
+				{x:x,y:y,z:0}
+			],
+			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
+			stroke: Math.max(4,e.force*60),
+			closed: false,
+			color: e.radiusX>25?'#FFF':colors[downCount%colors.length]
+		});
+		downCount++
+		//this.shape.drawing=true
+		illo.updateRenderGraph();
+  },
+  onDragMove(e) {
+		console.log(e)
+		
+		prevX=x
+		prevY=y
+		
+		x=e.clientX-illo.width/2
+		y=e.clientY-illo.height/2
+		/*
+		var pt={
+			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
+			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
+		}
+		*/
+
+		this.shape=new Zdog.Shape({
+			addTo: illo,
+			path:[
+				{x:prevX,y:prevY,z:0},{x:x,y:y,z:0}
+			],
+			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
+			stroke: Math.max(4,e.force*60),
+			closed: false,
+			color:  e.radiusX>25?'#FFF':colors[downCount%colors.length]
+		});
+		
+		//this.shape.drawing=true
+
+		//this.shape.path.push({x:x,y:y,z:0})
+		//this.shape.updatePath()
+
+		illo.updateRenderGraph();
+		dragCount++
+  },
+  onDragEnd(){
+  		/*
+			for(var i=3;i<illo.children.length;i++){
+				illo.children[i].drawing=false
+			}  	
+			*/
+  }
+
+});
+
+			
+
+
+/*			
+			var dragger=new Zdog.Dragger({
+				startElement: '.zdog-canvas',
+				onDragStart(e){
+					prevX = e.clientX
+					prevY = e.clientY
+					currX = e.clientX
+					currY = e.clientY
+				},
+				onDragMove(e,x,y) {
+					prevX=currX
+					prevY=currY
+					currX=e.clientX
+					currY=e.clientY
+					var deltaX=currX-prevX
+					var deltaY=currY-prevY
+					rotDummy.rotate.x-=deltaY/100
+					rotDummy.rotate.y-=deltaX/100
+					illo.updateRenderGraph();
+				}
+			});
+*/			
+		</script>
+	</body>
+</html>
