@@ -37,7 +37,7 @@ background:#FFF;
 	<body>
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
-<a href=”” class=”clearButton”>CLR</a>
+<a href="" class="clearButton" id="clear">CLR</a>
 		<script>
 			deviceOrientationData = null;
 			let isSpinning = true;
@@ -205,7 +205,7 @@ var dragger=new Zdog.Dragger({
 });
 
 			
-
+document.getElementById(”clear”).addEventListener("click",function(){})
 
 /*			
 			var dragger=new Zdog.Dragger({
