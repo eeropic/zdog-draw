@@ -22,6 +22,14 @@
 			background:#FDB;
 			cursor: crosshair;
 		}
+.clearButton {
+position:absolute;
+width:40px;
+height:40px;
+right:0;
+bottom:0;
+background:#FFF;
+}
 		</style>
 		<script src="js/zdog.dist.min.js"></script>
 		<script src="js/deviceorientation.js"></script>
@@ -29,6 +37,7 @@
 	<body>
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
+<a href=”” class=”clearButton”>CLR</a>
 		<script>
 			deviceOrientationData = null;
 			let isSpinning = true;
