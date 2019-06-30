@@ -206,7 +206,13 @@ var dragger=new Zdog.Dragger({
 });
 
 			
-document.getElementById("clear").addEventListener("click",function(){})
+document.getElementById("clear").addEventListener("click",function(e){
+e.preventDefault()
+for(var i=3;i<illo.children.length;i++){
+illo.children[i].remove()
+}  	
+
+})
 
 /*			
 			var dragger=new Zdog.Dragger({
