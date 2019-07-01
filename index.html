@@ -53,7 +53,9 @@ background:#FFF;
 <a href="" class="clearButton" id="clear">CLR</a>
 		<div id="konsoli"></div>
 <script>
-function log(msg){
+function log(msg,str){
+var str=str||false
+if(str)msg=JSON.stringify(msg)
 document.getElementById("konsoli").innerHTML+="\n"+msg
 }
 accData=[]
