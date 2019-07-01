@@ -13,12 +13,9 @@ accData=[]
 
 log('haloo')
 
-/*
+
 
 window.addEventListener("devicemotion", accelerometerUpdate, true);
-
-
-
 
 
 function accelerometerUpdate(event) {
@@ -44,6 +41,10 @@ accData.forEach(
 })
 log(accPos,true)
 
+}
+
+
+/*
 var avgPos={x:0,y:0,z:0}
 
 for(var key in accPos){
