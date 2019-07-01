@@ -12,6 +12,9 @@ window.addEventListener('deviceorientation', function( event ) {
 accData=[]
 
 log('haloo')
+
+/*
+
 window.addEventListener("devicemotion", accelerometerUpdate, true);
 
 
@@ -59,6 +62,7 @@ z:avgPos.z
 
 }
 
+*/
 
 currentScreenOrientation = window.orientation || 0; // active default
 window.addEventListener('orientationchange', function() {
