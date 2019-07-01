@@ -19,7 +19,7 @@ function accelerometerUpdate(event) {
 
 accData.push(event.acceleration)
 if(accData.length>3)accData.shift()
-
+log(accData,true)
 var accPos={
 x:[],
 y:[],
@@ -32,7 +32,7 @@ accData.forEach(
    accPos[key].push(item[key])
   }
 })
-
+log(accPos,true)
 
 var avgPos={x:0,y:0,z:0}
 
@@ -48,6 +48,7 @@ x:avgPos.x
 y:avgPos.y
 z:avgPos.z
 }
+
 
 }
 
