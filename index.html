@@ -23,6 +23,14 @@ position:absolute;
 			background:#FDB;
 			cursor: crosshair;
 		}
+
+#konsoli {
+font-family:monospace;
+font-size:10;
+position:absolute;
+pointer-events:none;
+z-index:999;
+}
 .clearButton {
 position:absolute;
 width:40px;
@@ -32,6 +40,11 @@ bottom:0;
 background:#FFF;
 }
 		</style>
+<script>
+function log(msg){
+document.getElementById("konsoli").innerHTML+="\n”+msg
+}
+</script>
 		<script src="js/zdog.dist.min.js"></script>
 		<script src="js/deviceorientation.js"></script>
 	</head>
@@ -39,10 +52,10 @@ background:#FFF;
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
 <a href="" class="clearButton" id="clear">CLR</a>
-		
+		<div id="konsoli"></div>
 
 <script>
-drawDirection=1
+drawDirection=-1
 			deviceOrientationData = null;
 devicePos=null
 			let isSpinning = true;
