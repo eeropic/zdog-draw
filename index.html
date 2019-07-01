@@ -60,6 +60,7 @@ document.getElementById("konsoli").innerHTML+="\n"+msg
 <script src="js/deviceorientation.js"></script>
 <script>
 drawDirection=-1
+drawing=false
 			deviceOrientationData = null;
 devicePos=null
 			let isSpinning = true;
@@ -166,6 +167,7 @@ function clamp(val,min,max){
 var dragger=new Zdog.Dragger({
 	startElement: '.zdog-canvas',
   onDragStart(e) {
+drawing=true
 		dragCount=0
 		drawDirection=-1
 		prevX=x
@@ -252,6 +254,7 @@ var prevPosi={x:prevX,y:prevY,z:0}
   },
   onDragEnd(){
 drawDirection=-1
+drawing=false
   		/*
 			for(var i=3;i<illo.children.length;i++){
 				illo.children[i].drawing=false
