@@ -40,6 +40,7 @@ background:#FFF;
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
 <a href="" class="clearButton" id="clear">CLR</a>
 		<script>
+drawDirection=1
 			deviceOrientationData = null;
 			let isSpinning = true;
 
@@ -59,10 +60,11 @@ background:#FFF;
 					
 					var angles=Quat2Angle(...qt)
 					
-					if(currentScreenOrientation==0){					
-						illo.rotate.x=-angles[2]
-						illo.rotate.y=-angles[1]
-						illo.rotate.z=-angles[0]
+					if(currentScreenOrientation==0){
+					
+						illo.rotate.x=drawDirection*angles[2]
+						illo.rotate.y=drawDirection*angles[1]
+						illo.rotate.z=drawDirection*angles[0]
 					}
 					else if(currentScreenOrientation==-90){					
 						illo.rotate.x=-angles[0]
@@ -135,7 +137,7 @@ var dragger=new Zdog.Dragger({
 	startElement: '.zdog-canvas',
   onDragStart(e) {
 		dragCount=0
-		
+		drawDirection=1
 		prevX=x
 		prevY=y
 			
@@ -196,6 +198,7 @@ var dragger=new Zdog.Dragger({
 		dragCount++
   },
   onDragEnd(){
+drawDirection=-1
   		/*
 			for(var i=3;i<illo.children.length;i++){
 				illo.children[i].drawing=false
