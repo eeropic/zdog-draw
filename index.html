@@ -218,13 +218,16 @@ log(posi)
 		
 		prevX=x
 		prevY=y
+
 prevDX=devX
 prevDY=devY
 prevDZ=devZ
 		
+if(devicePos!=null){
 devX=devicePos.x
 devY=devicePos.y
 devZ=devicePos.z
+}
 		x=e.clientX-illo.width/2
 		y=e.clientY-illo.height/2
 		/*
