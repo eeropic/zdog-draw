@@ -149,10 +149,12 @@ var dragger=new Zdog.Dragger({
 			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
 		}
 		*/
+if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
+else var posi={x:x,y:y,z:0}
 		this.shape=new Zdog.Shape({
 			addTo: illo,
 			path:[
-				{x:x,y:y,z:0}
+				posi
 			],
 			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
 			stroke: Math.max(4,e.force*60),
@@ -168,7 +170,13 @@ var dragger=new Zdog.Dragger({
 		
 		prevX=x
 		prevY=y
+prevDX=devX
+prevDY=devY
+prevDZ=devZ
 		
+devX=devicePos.x
+devY=devicePos.y
+devZ=devicePos.z
 		x=e.clientX-illo.width/2
 		y=e.clientY-illo.height/2
 		/*
@@ -177,11 +185,18 @@ var dragger=new Zdog.Dragger({
 			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
 		}
 		*/
-
+if(devicePos!=null){
+var prevPosi={x:prevX+prevDX,y:prevY+prevDY,z:prevDZ}
+ var posi={x:x+devX,y:y+devY,z:devZ}
+}
+else {
+var prevPosi={x:prevX,y:prevY,z:0}
+ var posi={x:x,y:y,z:0}
+}
 		this.shape=new Zdog.Shape({
 			addTo: illo,
 			path:[
-				{x:prevX,y:prevY,z:0},{x:x,y:y,z:0}
+				prevPosi,posi
 			],
 			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
 			stroke: Math.max(4,e.force*60),
