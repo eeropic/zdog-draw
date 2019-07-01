@@ -7,6 +7,23 @@ window.addEventListener('deviceorientation', function( event ) {
 	deviceOrientationData = event;
 }, false);
 
+window.addEventListener("devicemotion", accelerometerUpdate, true);
+}
+
+
+function accelerometerUpdate(event) {
+   var aX = event.accelerationIncludingGravity.x*10;
+   var aY = event.accelerationIncludingGravity.y*10;
+   var aZ = event.accelerationIncludingGravity.z*10;
+
+	// ix aY is negative, switch rotation
+	if (aY <0) {
+		aX = -aX - 180;
+	}
+devicePos={x:aX,y:aY,z:aZ}
+}
+
+
 currentScreenOrientation = window.orientation || 0; // active default
 window.addEventListener('orientationchange', function() {
 	currentScreenOrientation = window.orientation;
