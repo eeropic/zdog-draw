@@ -17,10 +17,7 @@ function accelerometerUpdate(event) {
    var aY = event.acceleration.y*10;
    var aZ = event.acceleration.z*10;
 
-	// ix aY is negative, switch rotation
-	if (aY <0) {
-		aX = -aX - 180;
-	}
+
 devicePos={x:aX,y:aY,z:aZ}
 }
 
