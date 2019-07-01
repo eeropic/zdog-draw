@@ -13,9 +13,9 @@ window.addEventListener("devicemotion", accelerometerUpdate, true);
 
 function accelerometerUpdate(event) {
 
-   var aX = event.accelerationIncludingGravity.x*10;
-   var aY = event.accelerationIncludingGravity.y*10;
-   var aZ = event.accelerationIncludingGravity.z*10;
+   var aX = event.acceleration.x*10;
+   var aY = event.acceleration.y*10;
+   var aZ = event.acceleration.z*10;
 
 	// ix aY is negative, switch rotation
 	if (aY <0) {
