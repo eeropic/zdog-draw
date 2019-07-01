@@ -2,7 +2,7 @@
 
 degtorad = Math.PI / 180; // Degree-to-Radian conversion
 deviceOrientationData = null;
-
+devicePos=null
 window.addEventListener('deviceorientation', function( event ) {
 	deviceOrientationData = event;
 }, false);
