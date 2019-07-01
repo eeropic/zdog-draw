@@ -12,7 +12,7 @@ window.addEventListener("devicemotion", accelerometerUpdate, true);
 
 
 function accelerometerUpdate(event) {
-log(event)
+
    var aX = event.accelerationIncludingGravity.x*10;
    var aY = event.accelerationIncludingGravity.y*10;
    var aZ = event.accelerationIncludingGravity.z*10;
