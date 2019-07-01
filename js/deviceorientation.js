@@ -18,7 +18,7 @@ function accelerometerUpdate(event) {
    var aZ = event.acceleration.z*10;
 
 accData.push(event.acceleration)
-if(accData.length>3)accData.shift
+if(accData.length>3)accData.shift()
 
 var accPos={
 x:[],
