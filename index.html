@@ -44,13 +44,15 @@ background:#FFF;
 }
 		</style>
 
-<script src="https://cdn.trackjs.com/agent/v3/latest/t.js" cross-origin="anonymous"></script>
-<script cross-origin="anonymous">
-  window.TrackJS && TrackJS.install({ 
-    token: "ef33d6b45d7d4515b4196bef0c517067",
-    application: "testi"
-  });
+<!-- Legacy agent deprecated 2018-10-31 -->
+<script>
+  window._trackJs = { 
+    token: "ef33d6b45d7d4515b4196bef0c517067"
+    // for more configuration options, see https://docs.trackjs.com
+  };
 </script>
+<script src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+
 		<script src="js/zdog.dist.min.js"></script>
 		
 	</head>
