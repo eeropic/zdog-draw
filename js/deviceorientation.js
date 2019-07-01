@@ -15,8 +15,8 @@ log('haloo')
 
 
 
-window.addEventListener("devicemotion", accelerometerUpdate, true);
-
+var evtest=window.addEventListener("devicemotion", accelerometerUpdate, true);
+log(evtest,true)
 
 function accelerometerUpdate(event) {
 
