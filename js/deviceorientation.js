@@ -7,11 +7,14 @@ window.addEventListener('deviceorientation', function( event ) {
 	deviceOrientationData = event;
 }, false);
 
-window.addEventListener("devicemotion", accelerometerUpdate, true);
-
 accData=[]
 
 log('haloo')
+window.addEventListener("devicemotion", accelerometerUpdate, true);
+
+
+
+
 
 function accelerometerUpdate(event) {
 
