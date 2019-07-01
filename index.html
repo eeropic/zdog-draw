@@ -191,6 +191,9 @@ posi={x:0,y:0,z:0}
 		*/
 if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
 else var posi={x:x,y:y,z:0}
+log(JSON.stringify(devicePos))
+log(x,y)
+log(posi)
 		this.shape=new Zdog.Shape({
 			addTo: illo,
 			path:[
