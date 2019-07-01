@@ -8,7 +8,7 @@ window.addEventListener('deviceorientation', function( event ) {
 }, false);
 
 window.addEventListener("devicemotion", accelerometerUpdate, true);
-}
+
 
 
 function accelerometerUpdate(event) {
