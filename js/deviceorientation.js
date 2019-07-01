@@ -39,16 +39,14 @@ accData.forEach(
    accPos[key].push(item[key])
   }
 })
-log(accPos,true)
-
-}
 
 
-/*
+
 var avgPos={x:0,y:0,z:0}
 
 for(var key in accPos){
-avgPos[key]=accPos[key].reduce((total, amount, index, array) => {
+avgPos[key]=accPos[key].reduce(
+function(total, amount, index, array){
   total += amount
   return total/array.length
 }, 0);
@@ -63,7 +61,7 @@ z:avgPos.z
 
 }
 
-*/
+
 
 currentScreenOrientation = window.orientation || 0; // active default
 window.addEventListener('orientationchange', function() {
