@@ -33,10 +33,11 @@ accData.forEach(
   }
 })
 
+
 var avgPos={x:0,y:0,z:0}
 
 for(var key in accPos){
-avgPos[key]=accPos.reduce((total, amount, index, array) => {
+avgPos[key]=accPos[key].reduce((total, amount, index, array) => {
   total += amount
   return total/array.length
 }, 0);
