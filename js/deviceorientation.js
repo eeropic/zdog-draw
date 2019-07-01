@@ -1,5 +1,7 @@
 //from https://dev.opera.com/articles/w3c-device-orientation-usage/
 
+log('k',false)
+
 degtorad = Math.PI / 180; // Degree-to-Radian conversion
 deviceOrientationData = null;
 devicePos=null
