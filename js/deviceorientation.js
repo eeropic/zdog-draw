@@ -26,7 +26,7 @@ function accelerometerUpdate(event) {
 
 accData.push(event.acceleration)
 if(accData.length>3)accData.shift()
-log(accData,true)
+
 var accPos={
 x:[],
 y:[],
