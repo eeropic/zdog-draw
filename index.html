@@ -75,7 +75,7 @@ accData=[]
 
 //from https://dev.opera.com/articles/w3c-device-orientation-usage/
 
-log('k',false)
+
 
 degtorad = Math.PI / 180; // Degree-to-Radian conversion
 deviceOrientationData = null;
@@ -86,12 +86,11 @@ window.addEventListener('deviceorientation', function( event ) {
 
 accData=[]
 
-log('haloo')
 
 
 
 var evtest=window.addEventListener("devicemotion", accelerometerUpdate, true);
-log(evtest,true)
+
 
 function accelerometerUpdate(event) {
 
@@ -129,9 +128,9 @@ function(total, amount, index, array){
 }
 
 devicePos={
-x:avgPos.x,
-y:avgPos.y,
-z:avgPos.z
+x:avgPos.x*20,
+y:avgPos.y*20,
+z:avgPos.z*20
 }
 
 
@@ -380,9 +379,6 @@ posi={x:0,y:0,z:0}
 		*/
 if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
 else var posi={x:x,y:y,z:0}
-log(JSON.stringify(devicePos))
-log(x,y)
-log(posi)
 		this.shape=new Zdog.Shape({
 			addTo: illo,
 			path:[
