@@ -40,11 +40,7 @@ bottom:0;
 background:#FFF;
 }
 		</style>
-<script>
-function log(msg){
-document.getElementById("konsoli").innerHTML+="\n"+msg
-}
-</script>
+
 		<script src="js/zdog.dist.min.js"></script>
 		<script src="js/deviceorientation.js"></script>
 	</head>
@@ -53,7 +49,11 @@ document.getElementById("konsoli").innerHTML+="\n"+msg
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
 <a href="" class="clearButton" id="clear">CLR</a>
 		<div id="konsoli"></div>
-
+<script>
+function log(msg){
+document.getElementById("konsoli").innerHTML+="\n"+msg
+}
+</script>
 <script>
 drawDirection=-1
 			deviceOrientationData = null;
