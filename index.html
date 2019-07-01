@@ -75,11 +75,11 @@ devicePos=null
 			let rotDummy = new Zdog.Anchor({
 				addTo: illo
 			});
-
+qt=[0,0,0,0]
 			function animate(step) {
 				
 				if(deviceOrientationData!=null){
-					var qt=computeQuaternion()
+					if(!drawing)qt=computeQuaternion()
 					
 					var angles=Quat2Angle(...qt)
 					
