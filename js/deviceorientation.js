@@ -11,6 +11,8 @@ window.addEventListener("devicemotion", accelerometerUpdate, true);
 
 accData=[]
 
+log('haloo')
+
 function accelerometerUpdate(event) {
 
    var aX = event.acceleration.x*10;
