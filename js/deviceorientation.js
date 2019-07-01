@@ -9,7 +9,7 @@ window.addEventListener('deviceorientation', function( event ) {
 
 window.addEventListener("devicemotion", accelerometerUpdate, true);
 
-
+accData=[]
 
 function accelerometerUpdate(event) {
 
@@ -17,8 +17,37 @@ function accelerometerUpdate(event) {
    var aY = event.acceleration.y*10;
    var aZ = event.acceleration.z*10;
 
+accData.push(event.acceleration)
+if(accData.length>3)accData.shift
 
-devicePos={x:aX,y:aY,z:aZ}
+var accPos={
+x:[],
+y:[],
+z:[]
+}
+
+accData.forEach(
+ function(item,index){
+  for(var key in accPos){
+   accPos[key].push(item[key])
+  }
+})
+
+var avgPos={x:0,y:0,z:0}
+
+for(var key in accPos){
+avgPos[key]=accPos.reduce((total, amount, index, array) => {
+  total += amount
+  return total/array.length
+}, 0);
+}
+
+devicePos={
+x:avgPos.x
+y:avgPos.y
+z:avgPos.z
+}
+
 }
 
 
