@@ -20,7 +20,7 @@
 position:absolute;
 			width:100%;
 			height:100%;
-			background:#FD8;
+			background:#FDB;
 			cursor: crosshair;
 		}
 
@@ -281,10 +281,11 @@ qt=[0,0,0,0]
 					var angles=Quat2Angle(...qt)
 					
 					if(currentScreenOrientation==0){
-					
+					/*
 						illo.rotate.x=drawDirection*angles[2]
 						illo.rotate.y=drawDirection*angles[1]
 						illo.rotate.z=drawDirection*angles[0]
+*/
 					}
 					else if(currentScreenOrientation==-90){					
 						illo.rotate.x=-angles[0]
