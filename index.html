@@ -12,6 +12,8 @@
 		}
 
 		body {
+font-family:monospace;
+font-size:8;
 			margin: 0;
 			min-height: 100%;
 		}
@@ -34,13 +36,19 @@ width:100%;
 white-space:pre;
 
 }
-.clearButton {
+
+.buttons {
+ display:flex;
 position:absolute;
+bottom:0;
+}
+.button {
 width:40px;
 height:40px;
-right:0;
-bottom:0;
 background:#FFF;
+text-align:center;
+box-sizing:border-box;
+padding:10px;
 }
 
 #cam {
@@ -68,7 +76,9 @@ z-index:-999;
 	<body>
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
-<a href="" class="clearButton" id="clear">CLR</a>
+<div class="buttons">
+<a href="" class="button" id="clear">CLR</a>
+</div>
 		<div id="konsoli"></div>
 <script>
 function log(msg,str){
