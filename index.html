@@ -397,7 +397,7 @@ posi={x:0,y:0,z:0}
 			
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(x/illo.width*Math.PI)*illo.width/2
+z=Math.sin(e.clientX/illo.width*Math.PI)*illo.width/2
 		/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
@@ -437,7 +437,7 @@ devZ=devicePos.z
 }
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(x/illo.width*Math.PI)*illo.width/2
+z=Math.sin(e.clientX/illo.width*Math.PI)*illo.width/2
 		/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
