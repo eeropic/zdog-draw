@@ -79,7 +79,7 @@ z-index:-999;
 <div class="buttons">
 <a href="#" class="button" id="clear">CLR</a>
 <a href="#" class="button" id="zoom-out">-</a>
-<a href="#" class="button" id="zoom-in">-</a>
+<a href="#" class="button" id="zoom-in">+</a>
 </div>
 		<div id="konsoli"></div>
 <script>
@@ -481,7 +481,7 @@ drawing=false
 			
 document.getElementById("clear").addEventListener("click",function(e){
 e.preventDefault()
-for(var i=illo.children.length-1;i>2;i—-){
+for(var i=illo.children.length-1;i>2;i--){
 illo.children[i].remove()
 }  	
 })
