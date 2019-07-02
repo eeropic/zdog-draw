@@ -77,9 +77,9 @@ z-index:-999;
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
 <div class="buttons">
-<a href="" class="button" id="clear">CLR</a>
-<a href="" class="button" id="zoom-out">-</a>
-
+<a href="#" class="button" id="clear">CLR</a>
+<a href="#" class="button" id="zoom-out">-</a>
+<a href="#" class="button" id="zoom-in">-</a>
 </div>
 		<div id="konsoli"></div>
 <script>
@@ -481,10 +481,19 @@ drawing=false
 			
 document.getElementById("clear").addEventListener("click",function(e){
 e.preventDefault()
-for(var i=3;i<illo.children.length;i++){
+for(var i=illo.children.length-1;i>2;i—-){
 illo.children[i].remove()
 }  	
+})
 
+document.getElementById("zoom-out").addEventListener("click",function(e){
+e.preventDefault()
+illo.zoom=illo.zoom/2
+})
+
+document.getElementById("zoom-in").addEventListener("click",function(e){
+e.preventDefault()
+illo.zoom=illo.zoom*2
 })
 
 /*			
