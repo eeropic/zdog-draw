@@ -358,8 +358,10 @@ zCount=-1
 
 prevX=0
 prevY=0
+prevZ=0
 x=0
 y=0
+z=0
 prevDX=0
 prevDY=0
 prevDZ=0
@@ -383,6 +385,7 @@ drawing=true
 		drawDirection=-1
 		prevX=x
 		prevY=y
+prevZ=z
 prevDX=0
 prevDY=0
 prevDZ=0
@@ -394,7 +397,7 @@ posi={x:0,y:0,z:0}
 			
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(x/illo.width*2*Math.PI)*illo.width/2
+z=Math.sin(x/illo.width*Math.PI)*illo.width/2
 		/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
@@ -422,7 +425,7 @@ else var posi={x:x,y:y,z:0}
 		
 		prevX=x
 		prevY=y
-
+prevZ=z
 prevDX=devX
 prevDY=devY
 prevDZ=devZ
@@ -434,6 +437,7 @@ devZ=devicePos.z
 }
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
+z=Math.sin(x/illo.width*Math.PI)*illo.width/2
 		/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
@@ -445,8 +449,8 @@ var prevPosi={x:prevX+prevDX,y:prevY+prevDY,z:prevDZ}
  var posi={x:x+devX,y:y+devY,z:devZ}
 }
 else {
-var prevPosi={x:prevX,y:prevY,z:0}
- var posi={x:x,y:y,z:0}
+var prevPosi={x:prevX,y:prevY,z:prevZ}
+ var posi={x:x,y:y,z:z}
 }
 		this.shape=new Zdog.Shape({
 			addTo: illo,
