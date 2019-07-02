@@ -394,6 +394,7 @@ posi={x:0,y:0,z:0}
 			
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
+z=Math.sin(x/illo.width*2)
 		/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
@@ -405,7 +406,7 @@ else var posi={x:x,y:y,z:0}
 		this.shape=new Zdog.Shape({
 			addTo: illo,
 			path:[
-				{x:x,y:y,z:0}
+				{x:x,y:y,z:z}
 			],
 			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
 			stroke: Math.max(4,e.force*60),
