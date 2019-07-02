@@ -97,6 +97,8 @@ accData=[]
 
 
 
+/* disable devicemotion for now
+todo: velocity+pos integral from acc
 
 var evtest=window.addEventListener("devicemotion", accelerometerUpdate, true);
 
@@ -145,7 +147,7 @@ z:avgPos.z*20
 
 }
 
-
+*/
 
 currentScreenOrientation = window.orientation || 0; // active default
 window.addEventListener('orientationchange', function() {
@@ -281,11 +283,10 @@ qt=[0,0,0,0]
 					var angles=Quat2Angle(...qt)
 					
 					if(currentScreenOrientation==0){
-					/*
 						illo.rotate.x=drawDirection*angles[2]
 						illo.rotate.y=drawDirection*angles[1]
 						illo.rotate.z=drawDirection*angles[0]
-*/
+
 					}
 					else if(currentScreenOrientation==-90){					
 						illo.rotate.x=-angles[0]
