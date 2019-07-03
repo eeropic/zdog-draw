@@ -371,6 +371,10 @@ devZ=0
 prevPosi={x:0,y:0,z:0}
 posi={x:0,y:0,z:0}
 
+var diff=illo.height-illo.width
+var diffHalf=diff/2
+
+
 function clamp(val,min,max){
     return Math.max(
         min, Math.min(max,val)
@@ -394,11 +398,13 @@ devY=0
 devZ=0
 prevPosi={x:0,y:0,z:0}
 posi={x:0,y:0,z:0}
-			
-		x=(e.clientX-illo.width/2)*(1/illo.zoom)
-		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(e.clientX/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
-		/*
+
+x=(e.clientX-illo.width/2)*(1/illo.zoom)
+y=(e.clientY-illo.height/2)*(1/illo.zoom)
+
+z=Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
+		
+/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
 			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
@@ -437,8 +443,9 @@ devZ=devicePos.z
 }
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(e.clientX/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
-		/*
+z=Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
+		
+/*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
 			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
