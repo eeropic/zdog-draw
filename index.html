@@ -64,11 +64,14 @@ z-index:-999;
 }
 
 
-#drawmode:before {
+#drawmode:before .flat {
 position:relative;
 content:'\25A1';
 }
-
+#drawmode:before .curve {
+position:relative;
+content:'\25EF';
+}
 
 
 		</style>
@@ -92,7 +95,7 @@ content:'\25A1';
 <a href="#" class="button" id="clear">CLR</a>
 <a href="#" class="button" id="zoom-out">-</a>
 <a href="#" class="button" id="zoom-in">+</a>
-<a href="#" class="button" id="drawmode"></a>
+<a href="#" class="button curve" id="drawmode"></a>
 </div>
 		<div id="konsoli"></div>
 <script>
