@@ -64,7 +64,7 @@ z-index:-999;
 }
 
 
-#drawmode.flat:before {
+#drawmode:before {
 position:relative;
 content:'\25A1';
 }
@@ -508,20 +508,28 @@ drawing=false
 
 			
 document.getElementById("clear").addEventListener("click",function(e){
-e.preventDefault()
-for(var i=illo.children.length-1;i>2;i--){
-illo.children[i].remove()
-}  	
+  e.preventDefault()
+  for(var i=illo.children.length-1;i>2;i--){
+    illo.children[i].remove()
+  }  	
 })
 
 document.getElementById("zoom-out").addEventListener("click",function(e){
-e.preventDefault()
-illo.zoom=illo.zoom/2
+  e.preventDefault()
+  illo.zoom=illo.zoom/2
 })
 
 document.getElementById("zoom-in").addEventListener("click",function(e){
-e.preventDefault()
-illo.zoom=illo.zoom*2
+  e.preventDefault()
+  illo.zoom=illo.zoom*2
+})
+
+illo.drawmode=false
+
+document.getElementById("drawmode").addEventListener("click",function(e){
+  e.preventDefault()
+alert(JSON.stringify(this))
+  illo.drawmode=!illo.drawmode
 })
 
 /*			
