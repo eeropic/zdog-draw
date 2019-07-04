@@ -70,7 +70,7 @@ content:'\25A1';
 }
 #drawmode.curved:before {
 position:relative;
-content:'\9675';
+content:'\25CB';
 }
 
 
@@ -418,8 +418,9 @@ posi={x:0,y:0,z:0}
 x=(e.clientX-illo.width/2)*(1/illo.zoom)
 y=(e.clientY-illo.height/2)*(1/illo.zoom)
 
-z=Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
-		
+z=illo.drawmode
+?Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
+:0
 /*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
@@ -459,8 +460,9 @@ devZ=devicePos.z
 }
 		x=(e.clientX-illo.width/2)*(1/illo.zoom)
 		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
-		
+z=illo.drawmode
+?Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*illo.width/2*(1/illo.zoom)
+:0
 /*
 		var pt={
 			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
