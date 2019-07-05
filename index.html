@@ -685,6 +685,9 @@ function byId(id){return document.getElementById(id)}
 var gui = document.createElement("DIV");
 gui.setAttribute("id","gui")
 document.body.appendChild(gui)
+gui.addEventListener("touchmove",function(e){
+e.preventDefault()
+})
 
 function createLabel(prop){
 	var label = document.createElement("label")
