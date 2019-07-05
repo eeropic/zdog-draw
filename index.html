@@ -81,6 +81,23 @@ content:'\25A1';
 position:relative;
 content:'\25CB';
 }
+
+
+
+#rotate-left:before {
+content:'\'
+}
+#rotate-right:before {
+content:'\'
+}
+#rotate-up:before {
+content:'\'
+}
+#rotate-down:before {
+content:'\'
+}
+
+
 /*sliders*/
 
 #gui {
@@ -212,7 +229,7 @@ span.numbox{
 ::-ms-tooltip { display: none; }
 
 		</style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
 <!-- Legacy agent deprecated 2018-10-31 -->
 <script>
   window._trackJs = { 
@@ -233,6 +250,10 @@ span.numbox{
 <a href="#" class="button" id="zoom-out">-</a>
 <a href="#" class="button" id="zoom-in">+</a>
 <a href="#" class="button" id="drawmode"></a>
+<a href="#" class="button" id="rotate-left"></a>
+<a href="#" class="button" id="rotate-right"></a>
+<a href="#" class="button" id="rotate-up"></a>
+<a href="#" class="button" id="rotate-down"></a>
 </div>
 		<div id="konsoli"></div>
 <script>
@@ -755,9 +776,34 @@ numBox.addEventListener("input",function(val){
 
 createSlider(-illo.width/2, illo.width/2, globals,'Z',gui)
 
+function rotate(obj,x,y){
+ anime({
+	duration:300,
+  easing: 'easeInOutSine',
+	targets: obj['rotate'],
+	x: obj['rotate']['x']+ x*Zdog.TAU/4,
+y: obj['rotate']['y']+ y*Zdog.TAU/4,
+  update: function() {
+		//update the zdog render graph each frame
+		illo.updateRenderGraph();
+  }
+});
+}
 
+byId('rotate-left').addEventListener('click',function(e){
+e.preventDefault()
+rotate(illo,-1, 0)
+})
 
 /*			
+
+
+
+
+
+
+
+
 	var dragger=new Zdog.Dragger({
 		startElement: '.zdog-canvas',
 		onDragStart(e){
