@@ -693,10 +693,12 @@ function createLabel(prop){
 	return label
 }
 
-function createSlider(obj,prop,container){
+function createSlider(minVal,maxVal,obj,prop,container){
 	var label=createLabel(prop)
 	var slider = document.createElement("input")
 	slider.setAttributes({
+"min":minVal,
+"max":maxVal,
 		"type":"range",
 		"tabindex":-1,
 		"value":obj[prop],
@@ -705,7 +707,9 @@ function createSlider(obj,prop,container){
 	var numBox = document.createElement("input")
 	numBox.setAttributes({
 		"type":"number",
-		"value":obj[prop]
+		"value":obj[prop],
+"min":minVal,
+"max":maxVal
 	})
 
 slider.addEventListener("input",function(val){
@@ -731,7 +735,7 @@ numBox.addEventListener("input",function(val){
 	container.appendChild(label)
 }
 
-createSlider(globals,'Z',gui)
+createSlider(-illo.width/2, illo.width/2, globals,'Z',gui)
 
 
 
