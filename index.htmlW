@@ -514,7 +514,7 @@ var axisColors=["#F00","#0F0","#00F"]
 
 for(var i=0;i<3;i++){
 	var axis=new Zdog.Shape({
-		addTo: illo,
+		addTo: rotDummy,
 		path: [{ x: 0, y: 0, z:  0},{ x: (i==0)?grid:0, y: (i==1)?grid:0, z: (i==2)?grid:0 }],
 		closed: false,
 		stroke: 0.5,
@@ -588,7 +588,7 @@ z=illo.drawmode
 if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
 else var posi={x:x,y:y,z:0}
 		this.shape=new Zdog.Shape({
-			addTo: illo,
+			addTo: rotDummy,
 			path:[
 				{x:x,y:y,z:z}
 			],
@@ -636,7 +636,7 @@ var prevPosi={x:prevX,y:prevY,z:prevZ}
  var posi={x:x,y:y,z:z}
 }
 		this.shape=new Zdog.Shape({
-			addTo: illo,
+			addTo: rotDummy,
 			path:[
 				prevPosi,posi
 			],
@@ -672,8 +672,8 @@ return document.getElementById(id)
 			
 byId("clear").addEventListener("click",function(e){
   e.preventDefault()
-  for(var i=illo.children.length-1;i>2;i--){
-    illo.children[i].remove()
+  for(var i=rotDummy.children.length-1;i>2;i--){
+    rotDummy.children[i].remove()
   }  	
 })
 
@@ -792,7 +792,7 @@ y: obj['rotate']['y']+ y*Zdog.TAU/4,
 
 byId('rotate-left').addEventListener('click',function(e){
 e.preventDefault()
-rotate(illo,0,-1)
+rotate(rotDummy,0,-1)
 })
 
 /*			
