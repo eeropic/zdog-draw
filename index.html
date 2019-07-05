@@ -88,17 +88,17 @@ content:'\25CB';
 	top:0;
 	display:flex;
 	flex-direction:column;
-	width:200px;
+	width:30px;
 	height:100%;
 }
 
 label {
 	display:flex;
 	position:relative;
-	width: 200px;
-	height: var(--control-height);
+	height: 200px;
+	width: var(--control-height);
 	text-align:left;
-	flex-direction:row;
+	flex-direction:column;
 	vertical-align:middle;
 	opacity:0.4;
 	overflow:hidden;
@@ -158,7 +158,7 @@ span.numbox{
 
 .number::-webkit-slider-runnable-track {
     background: var(--slider-bg);
-	height:2px;
+	width:2px;
 
 }
 
@@ -168,20 +168,20 @@ span.numbox{
     height: var(--control-height);
     background: var(--slider-fill);
 		opacity:1;
-	  margin-top: calc( -1 * var(--control-height) / 2);
+	  margin-left: calc( -1 * var(--control-height) / 2);
 	  border-radius: var(--control-height);
 	border:0;
 }
 
 ::-moz-range-track {
-    height: 40px;
+    width: 40px;
     background: var(--slider-bg);
 }
 
 ::-moz-range-thumb {
     background: #fff;
-    height: 40px;
-    width: 0px;
+    width: 40px;
+    height: 0px;
     border: none;
     border-radius: 0 !important;
     box-shadow: -100vw 0 0 100vw var(--slider-fill);
@@ -191,7 +191,7 @@ span.numbox{
 ::-ms-track { 
     background: var(--slider-bg);
     color: transparent;
-    height: 40px;
+    width: 40px;
     border: none;
 }
 
@@ -202,8 +202,8 @@ span.numbox{
 ::-ms-thumb { 
     background: #fff;
     border: none;
-    height: 40px;
-    width: 0px;
+    width: 40px;
+    height: 0px;
     box-sizing: border-box;
 }
 
