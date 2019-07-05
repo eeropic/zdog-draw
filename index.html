@@ -688,7 +688,12 @@ document.body.appendChild(gui)
 gui.addEventListener("touchmove",function(e){
 e.preventDefault()
 })
-byId('bottom-gui').addEventListener("touchmove",function(e){
+
+byId('gui-bottom').addEventListener("mousedown",function(e){
+e.preventDefault()
+})
+
+byId('gui-bottom').addEventListener("touchmove",function(e){
 e.preventDefault()
 })
 
