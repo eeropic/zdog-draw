@@ -50,6 +50,7 @@ white-space:pre;
  display:flex;
 position:absolute;
 bottom:0;
+opacity:0.4;
 }
 .button {
 width:40px;
@@ -84,11 +85,11 @@ content:'\25CB';
 
 #gui {
 	position:absolute;
-	left:0;
+	left:2%;
 	top:0;
 	display:flex;
 	flex-direction:column;
-	width:100%;
+	width:96%;
 	height:30px;
 }
 
@@ -717,11 +718,11 @@ slider.addEventListener("input",function(val){
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("mousedown", function(e){
-		this.value=e.offsetY/this.offsetHeight*100
+		this.value=e.offsetX/this.offsetWidth*illo.width-(illo.width/2)
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
-		var val=(e.touches[0].pageY-e.target.getBoundingClientRect().top)/this.offsetHeight*100;
+		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*illo.width-(illo.width/2);
 		this.value=val
 		numBox.value=this.valueAsNumber;
 	})
