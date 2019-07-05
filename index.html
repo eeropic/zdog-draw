@@ -228,7 +228,7 @@ span.numbox{
 	<body>
 	
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
-<div class="buttons">
+<div class="buttons" id="gui-bottom">
 <a href="#" class="button" id="clear">CLR</a>
 <a href="#" class="button" id="zoom-out">-</a>
 <a href="#" class="button" id="zoom-in">+</a>
@@ -688,6 +688,10 @@ document.body.appendChild(gui)
 gui.addEventListener("touchmove",function(e){
 e.preventDefault()
 })
+byId('bottom-gui').addEventListener("touchmove",function(e){
+e.preventDefault()
+})
+
 
 function createLabel(prop){
 	var label = document.createElement("label")
