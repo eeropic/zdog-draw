@@ -793,19 +793,19 @@ y: obj['rotate']['y']+ y*Zdog.TAU/4,
 
 byId('rotate-left').addEventListener('click',function(e){
 e.preventDefault()
-rotate(rotDummy,0,-1)
+rotate(rotDummy,0,1)
 })
 byId('rotate-right').addEventListener('click',function(e){
 e.preventDefault()
-rotate(rotDummy,0,1)
+rotate(rotDummy,0,-1)
 })
 byId('rotate-up').addEventListener('click',function(e){
 e.preventDefault()
-rotate(rotDummy,-1,0)
+rotate(rotDummy,1,0)
 })
 byId('rotate-down').addEventListener('click',function(e){
 e.preventDefault()
-rotate(rotDummy,1,0)
+rotate(rotDummy,-1,0)
 })
 
 /*			
