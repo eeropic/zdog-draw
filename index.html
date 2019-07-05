@@ -714,11 +714,11 @@ slider.addEventListener("input",function(val){
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("mousedown", function(e){
-		this.value=e.offsetX/this.offsetWidth*100
+		this.value=e.offsetY/this.offsetHeight*100
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
-		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*100;
+		var val=(e.touches[0].pageY-e.target.getBoundingClientRect().top)/this.offsetHeight*100;
 		this.value=val
 		numBox.value=this.valueAsNumber;
 	})
