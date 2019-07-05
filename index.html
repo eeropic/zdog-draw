@@ -537,6 +537,68 @@ byId("drawmode").addEventListener("click",function(e){
   illo.drawmode=!illo.drawmode
 })
 
+var globals={Z:10}
+
+Element.prototype.setAttributes=function(ps) {
+for(var p in ps){this.setAttribute(p,ps[p])}
+}
+
+function byId(id){return document.getElementById(id)}
+
+var gui = document.createElement("DIV");
+gui.setAttribute("id","gui")
+document.body.appendChild(gui)
+
+function createLabel(prop){
+	var label = document.createElement("label")
+	var labelText = document.createElement("span")
+	labelText.innerHTML=prop
+	label.appendChild(labelText)
+	return label
+}
+
+function createSlider(obj,prop,container){
+	var label=createLabel(prop)
+	var slider = document.createElement("input")
+	slider.setAttributes({
+		"type":"range",
+		"tabindex":-1,
+		"value":obj[prop],
+		"class":"number"		
+	})
+	var numBox = document.createElement("input")
+	numBox.setAttributes({
+		"type":"number",
+		"value":obj[prop]
+	})
+
+slider.addEventListener("input",function(val){
+		obj[prop]=this.valueAsNumber;
+		numBox.value=this.valueAsNumber;
+	})
+	slider.addEventListener("mousedown", function(e){
+		this.value=e.offsetX/this.offsetWidth*100
+		numBox.value=this.valueAsNumber;
+	})
+	slider.addEventListener("touchmove", function(e){
+		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*100;
+		this.value=val
+		numBox.value=this.valueAsNumber;
+	})
+
+numBox.addEventListener("input",function(val){
+		obj[prop]=this.valueAsNumber;
+		slider.value=this.valueAsNumber;
+	})	
+	label.appendChild(slider)
+	label.appendChild(numBox)
+	container.appendChild(label)
+}
+
+createSlider(globals,'Z',gui)
+
+
+
 /*			
 	var dragger=new Zdog.Dragger({
 		startElement: '.zdog-canvas',
