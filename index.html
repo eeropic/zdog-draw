@@ -674,7 +674,7 @@ byId("drawmode").addEventListener("click",function(e){
   illo.drawmode=!illo.drawmode
 })
 
-var globals={Z:10}
+var globals={Z:0}
 
 Element.prototype.setAttributes=function(ps) {
 for(var p in ps){this.setAttribute(p,ps[p])}
@@ -712,6 +712,7 @@ function createSlider(minVal,maxVal,obj,prop,container){
 	slider.setAttributes({
 "min":minVal,
 "max":maxVal,
+"step":1,
 		"type":"range",
 		"tabindex":-1,
 		"value":obj[prop],
@@ -722,7 +723,8 @@ function createSlider(minVal,maxVal,obj,prop,container){
 		"type":"number",
 		"value":obj[prop],
 "min":minVal,
-"max":maxVal
+"max":maxVal,
+"step":1
 	})
 
 slider.addEventListener("input",function(val){
