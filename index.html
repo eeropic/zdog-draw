@@ -587,17 +587,18 @@ z=illo.drawmode
 		*/
 if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
 else var posi={x:x,y:y,z:0}
+downCount++
 		this.shape=new Zdog.Shape({
 			addTo: rotDummy,
 			path:[
 				{x:x,y:y,z:z}
 			],
-			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
+			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
 			stroke: Math.max(4,e.force*60),
 			closed: false,
 			color: e.radiusX>25?'#FFF':colors[downCount%colors.length]
 		});
-		downCount++
+		
 		//this.shape.drawing=true
 		illo.updateRenderGraph();
   },
@@ -640,7 +641,7 @@ var prevPosi={x:prevX,y:prevY,z:prevZ}
 			path:[
 				prevPosi,posi
 			],
-			rotate:{x:-illo.rotate.x,y:-illo.rotate.y},
+			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
 			stroke: Math.max(4,e.force*60),
 			closed: false,
 			color:  e.radiusX>25?'#FFF':colors[downCount%colors.length]
@@ -778,7 +779,7 @@ createSlider(-illo.width/2, illo.width/2, globals,'Z',gui)
 
 function rotate(obj,x,y){
  anime({
-	duration:300,
+	duration:200,
   easing: 'easeInOutSine',
 	targets: obj['rotate'],
 	x: obj['rotate']['x']+ x*Zdog.TAU/4,
@@ -793,6 +794,18 @@ y: obj['rotate']['y']+ y*Zdog.TAU/4,
 byId('rotate-left').addEventListener('click',function(e){
 e.preventDefault()
 rotate(rotDummy,0,-1)
+})
+byId('rotate-right').addEventListener('click',function(e){
+e.preventDefault()
+rotate(rotDummy,0,1)
+})
+byId('rotate-left').addEventListener('click',function(e){
+e.preventDefault()
+rotate(rotDummy,-1,0)
+})
+byId('rotate-left').addEventListener('click',function(e){
+e.preventDefault()
+rotate(rotDummy,1,0)
 })
 
 /*			
