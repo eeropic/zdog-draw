@@ -732,12 +732,15 @@ slider.addEventListener("input",function(val){
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("mousedown", function(e){
-		this.value=e.offsetX/this.offsetWidth*illo.width-(illo.width/2)
-		numBox.value=this.valueAsNumber;
+		var val=e.offsetX/this.offsetWidth*illo.width-(illo.width/2)
+		this.value=Math.round(val)
+obj[prop]=this.valueAsNumber
+numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
 		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*illo.width-(illo.width/2);
-		this.value=val
+		this.value=Math.round(val)
+obj[prop]=this.valueAsNumber
 		numBox.value=this.valueAsNumber;
 	})
 
