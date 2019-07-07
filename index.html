@@ -112,7 +112,7 @@ content:'\2193'
 	display:flex;
 	flex-direction:column;
 	width:96%;
-	height:30px;
+	height:60px;
 }
 
 label {
@@ -603,7 +603,7 @@ var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
 				{x:x,y:y,z:z}
 			],
 			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
-			stroke: Math.max(4,e.force*60),
+			stroke: globals.stroke==null?Math.max(4,e.force*60):globals.stroke,
 			closed: false,
 			color: globals.color==null?clr:globals.color
 		});
@@ -652,7 +652,7 @@ var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
 				prevPosi,posi
 			],
 			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
-			stroke: Math.max(4,e.force*60),
+			stroke: globals.stroke==null?Math.max(4,e.force*60):globals.stroke,
 			closed: false,
 			color: globals.color==null?clr:globals.color
 		});
@@ -706,7 +706,7 @@ byId("drawmode").addEventListener("click",function(e){
   illo.drawmode=!illo.drawmode
 })
 
-var globals={Z:0, color: null}
+var globals={Z:0, color: null, stroke: null}
 
 Element.prototype.setAttributes=function(ps) {
 for(var p in ps){this.setAttribute(p,ps[p])}
@@ -788,6 +788,8 @@ numBox.addEventListener("input",function(val){
 }
 
 createSlider(-illo.width/2, illo.width/2, globals,'Z',gui)
+createSlider(1, 100, globals,'stroke', gui)
+
 
 function rotate(obj,x,y){
  anime({
