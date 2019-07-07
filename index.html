@@ -766,15 +766,18 @@ slider.addEventListener("input",function(val){
 		numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("mousedown", function(e){
-		var val=e.offsetX/this.offsetWidth*(Math.abs(this.min)+this.max)+this.min;
+var mini=parseFloat(this.min)
+var maxi=parseFloat(this.max)
+
+var val=e.offsetX/this.offsetWidth*(Math.abs(mini)+maxi)+mini;
 		this.value=Math.round(val)
 obj[prop]=this.valueAsNumber
 numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
-		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(this.min)+this.max)-this.min;
-alert(Math.abs(this.min))
-alert(val)
+var mini=parseFloat(this.min)
+var maxi=parseFloat(this.max)
+var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(mini)+maxi)+mini;
 this.value=Math.round(val)
 obj[prop]=this.valueAsNumber
 
