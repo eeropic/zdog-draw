@@ -775,6 +775,8 @@ numBox.value=this.valueAsNumber;
 		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*illo.width-(illo.width/2);
 		this.value=Math.round(val)
 obj[prop]=this.valueAsNumber
+alert(this.min)
+alert(this.getAttribute('min'))
 		numBox.value=this.valueAsNumber;
 	})
 
