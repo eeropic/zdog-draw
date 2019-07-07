@@ -773,7 +773,9 @@ numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
 		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(this.min)+this.max)+this.min;
-		this.value=Math.round(val)
+		alert(this.min, this.max)
+alert(val)
+this.value=Math.round(val)
 obj[prop]=this.valueAsNumber
 
 		numBox.value=this.valueAsNumber;
