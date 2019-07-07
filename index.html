@@ -772,9 +772,9 @@ obj[prop]=this.valueAsNumber
 numBox.value=this.valueAsNumber;
 	})
 	slider.addEventListener("touchmove", function(e){
-		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(this.min)+this.max)+this.min;
-		alert(this.max)
-alert(this.getAttribute('max'))
+		var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(this.min)+this.max)-this.min;
+alert(Math.abs(this.min))
+alert(val)
 this.value=Math.round(val)
 obj[prop]=this.valueAsNumber
 
