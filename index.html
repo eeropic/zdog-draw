@@ -595,6 +595,8 @@ z=illo.drawmode
 if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
 else var posi={x:x,y:y,z:0}
 downCount++
+var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
+
 		this.shape=new Zdog.Shape({
 			addTo: rotDummy,
 			path:[
@@ -603,7 +605,7 @@ downCount++
 			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
 			stroke: Math.max(4,e.force*60),
 			closed: false,
-			color: e.radiusX>25?'#FFF':colors[downCount%colors.length]
+			color: globals.color==null?clr:globals.color
 		});
 		
 		//this.shape.drawing=true
@@ -643,6 +645,7 @@ else {
 var prevPosi={x:prevX,y:prevY,z:prevZ}
  var posi={x:x,y:y,z:z}
 }
+var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
 		this.shape=new Zdog.Shape({
 			addTo: rotDummy,
 			path:[
@@ -651,7 +654,7 @@ var prevPosi={x:prevX,y:prevY,z:prevZ}
 			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
 			stroke: Math.max(4,e.force*60),
 			closed: false,
-			color:  e.radiusX>25?'#FFF':colors[downCount%colors.length]
+			color: globals.color==null?clr:globals.color
 		});
 		
 		//this.shape.drawing=true
@@ -703,7 +706,7 @@ byId("drawmode").addEventListener("click",function(e){
   illo.drawmode=!illo.drawmode
 })
 
-var globals={Z:0}
+var globals={Z:0, color: null}
 
 Element.prototype.setAttributes=function(ps) {
 for(var p in ps){this.setAttribute(p,ps[p])}
@@ -726,7 +729,10 @@ byId('gui-bottom').addEventListener("touchmove",function(e){
 e.preventDefault()
 })
 
-
+byId('colorpicker').addEventListener('input', function(e){
+globals.color=this.value
+alert(this.value)
+})
 function createLabel(prop){
 	var label = document.createElement("label")
 	var labelText = document.createElement("span")
@@ -816,13 +822,6 @@ rotate(rotDummy,-1,0)
 })
 
 /*			
-
-
-
-
-
-
-
 
 	var dragger=new Zdog.Dragger({
 		startElement: '.zdog-canvas',
