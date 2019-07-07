@@ -97,6 +97,11 @@ content:'\2191'
 content:'\2193'
 }
 
+#colorpicker {
+ position:absolute;
+ right:0;
+ bottom:0;
+}
 
 /*sliders*/
 
@@ -254,8 +259,9 @@ span.numbox{
 <a href="#" class="button" id="rotate-right"></a>
 <a href="#" class="button" id="rotate-up"></a>
 <a href="#" class="button" id="rotate-down"></a>
-<input type="color" name="favcolor" value="#ff0000">
+
 </div>
+<input type="color" id="colorpicker" value="#ff0000">
 		<div id="konsoli"></div>
 <script>
 function log(msg,str){
