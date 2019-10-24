@@ -5,9 +5,22 @@ log('k',false)
 degtorad = Math.PI / 180; // Degree-to-Radian conversion
 deviceOrientationData = null;
 devicePos=null
-window.addEventListener('deviceorientation', function( event ) {
-	deviceOrientationData = event;
-}, false);
+
+if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+	DeviceOrientationEvent.requestPermission()
+	  .then(permissionState => {
+		if (permissionState === 'granted') {
+			window.addEventListener('deviceorientation', function( event ) {
+				deviceOrientationData = event;
+			}, false);
+		}
+	  })
+	  .catch(console.error);
+  } else {
+	// handle regular non iOS 13+ devices
+  }
+
+
 
 accData=[]
 
