@@ -1,460 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="utf-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
-:root {
---slider-fill: #B0B0BB;
-	--slider-bg: #E0E0E0;
-	--number-bg: #D0D0D0;
-	--control-height: 30px;
-	--font-family: Monaco, monospace;
-}
+			:root {
+				--slider-fill: #B0B0BB;
+				--slider-bg: #E0E0E0;
+				--number-bg: #D0D0D0;
+				--control-height: 30px;
+				--font-family: Monaco, monospace;
+			}
 
-		html {
-			width:100%;
-			height: 100%;
-			overflow:hidden;
-		}
+			html {
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
 
-		body {
-font-family:monospace;
-font-size:8;
-			margin: 0;
-			min-height: 100%;
-		}
-
-
-		.zdog-canvas {
-position:absolute;
-			width:100%;
-			height:100%;
-			background:#FDB;
-			cursor: crosshair;
-		}
-
-#konsoli {
-font-family:monospace;
-font-size:8;
-position:absolute;
-pointer-events:none;
-z-index:999;
-width:100%;
-white-space:pre;
-
-}
-
-.buttons {
- display:flex;
-position:absolute;
-bottom:0;
-opacity:0.4;
-}
-.button {
-width:40px;
-height:40px;
-background:#FFF;
-text-align:center;
-box-sizing:border-box;
-padding:10px;
-text-decoration:none;
-color:#999;
-}
-
-#cam {
-width:100%;
-height:100%;
-position:absolute;
-left:0;
-top:0;
-z-index:-999;
-}
+			body {
+				font-family: monospace;
+				font-size: 8;
+				margin: 0;
+				min-height: 100%;
+			}
 
 
-#drawmode:before {
-position:relative;
-content:'\25A1';
-}
-#drawmode.curved:before {
-position:relative;
-content:'\25CB';
-}
+			.zdog-canvas {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: #FDB;
+				cursor: crosshair;
+			}
+
+			#konsoli {
+				font-family: monospace;
+				font-size: 8;
+				position: absolute;
+				pointer-events: none;
+				z-index: 999;
+				width: 100%;
+				white-space: pre;
+
+			}
+
+			.buttons {
+				display: flex;
+				position: absolute;
+				bottom: 0;
+				opacity: 0.4;
+			}
+
+			.button {
+				width: 40px;
+				height: 40px;
+				background: #FFF;
+				text-align: center;
+				box-sizing: border-box;
+				padding: 10px;
+				text-decoration: none;
+				color: #999;
+			}
+
+			#cam {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: -999;
+			}
+
+
+			#drawmode:before {
+				position: relative;
+				content: '\25A1';
+			}
+
+			#drawmode.curved:before {
+				position: relative;
+				content: '\25CB';
+			}
 
 
 
-#rotate-left:before {
-content:'\2190'
-}
-#rotate-right:before {
-content:'\2192'
-}
-#rotate-up:before {
-content:'\2191'
-}
-#rotate-down:before {
-content:'\2193'
-}
+			#rotate-left:before {
+				content: '\2190'
+			}
 
-#colorpicker {
- position:absolute;
- right:0;
- bottom:0;
-}
+			#rotate-right:before {
+				content: '\2192'
+			}
 
-/*sliders*/
+			#rotate-up:before {
+				content: '\2191'
+			}
 
-#gui {
-	position:absolute;
-	left:2%;
-	top:0;
-	display:flex;
-	flex-direction:column;
-	width:96%;
-	height:60px;
-}
+			#rotate-down:before {
+				content: '\2193'
+			}
 
-label {
-	display:flex;
-	position:relative;
-	
-	height: var(--control-height);
-	text-align:left;
-	flex-direction:row;
-	vertical-align:middle;
-	opacity:0.4;
-	overflow:hidden;
-}
+			#colorpicker {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
 
-label:focus-within {
-	opacity:1;
-}
+			/*sliders*/
 
-label span {
-	position:absolute;
-	vertical-align:middle;
-	text-align:center;
-	pointer-events:none;
-	display:inline-block;
-	line-height: var(--control-height);
-	user-select: none;
-}
+			#gui {
+				position: absolute;
+				left: 2%;
+				top: 0;
+				display: flex;
+				flex-direction: column;
+				width: 96%;
+				height: 60px;
+			}
 
-input:focus{
-	outline:none;
-}
+			label {
+				display: flex;
+				position: relative;
 
-input[type="range"].number {
-	-webkit-appearance: none;
-	margin:0;
-	left: 0;
-	top: 0;
-	overflow: hidden;
-	cursor: pointer;
-	border-radius: 0;
-	display:block;
-	flex-basis:85%;
-}
+				height: var(--control-height);
+				text-align: left;
+				flex-direction: row;
+				vertical-align: middle;
+				opacity: 0.4;
+				overflow: hidden;
+			}
 
-input[type="number"] {
-	-moz-appearance: none;
-  appearance: none;
-	-webkit-appearance: none;
-	background:var(--number-bg);
-	border:0;
-	margin:0;
-	min-width:0;
-	flex-basis:15%;
-	width:100%;
-	padding-left: 5px;
-	box-sizing: border-box;
-	font-size:1em;
-	font-family: var(--font-family);
-}
+			label:focus-within {
+				opacity: 1;
+			}
 
-span.numbox{
-	position:relative;
-	flex-basis:75%;
-}
+			label span {
+				position: absolute;
+				vertical-align: middle;
+				text-align: center;
+				pointer-events: none;
+				display: inline-block;
+				line-height: var(--control-height);
+				user-select: none;
+			}
 
-.number::-webkit-slider-runnable-track {
-    background: var(--slider-bg);
-	height:2px;
+			input:focus {
+				outline: none;
+			}
 
-}
+			input[type="range"].number {
+				-webkit-appearance: none;
+				margin: 0;
+				left: 0;
+				top: 0;
+				overflow: hidden;
+				cursor: pointer;
+				border-radius: 0;
+				display: block;
+				flex-basis: 85%;
+			}
 
-.number::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: var(--control-height);
-    height: var(--control-height);
-    background: var(--slider-fill);
-		opacity:1;
-	  margin-top: calc( -1 * var(--control-height) / 2);
-	  border-radius: var(--control-height);
-	border:0;
-}
+			input[type="number"] {
+				-moz-appearance: none;
+				appearance: none;
+				-webkit-appearance: none;
+				background: var(--number-bg);
+				border: 0;
+				margin: 0;
+				min-width: 0;
+				flex-basis: 15%;
+				width: 100%;
+				padding-left: 5px;
+				box-sizing: border-box;
+				font-size: 1em;
+				font-family: var(--font-family);
+			}
 
-::-moz-range-track {
-    width: 40px;
-    background: var(--slider-bg);
-}
+			span.numbox {
+				position: relative;
+				flex-basis: 75%;
+			}
 
-::-moz-range-thumb {
-    background: #fff;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 0 !important;
-    box-shadow: -100vw 0 0 100vw var(--slider-fill);
-    box-sizing: border-box;
-}
+			.number::-webkit-slider-runnable-track {
+				background: var(--slider-bg);
+				height: 2px;
 
-::-ms-track { 
-    background: var(--slider-bg);
-    color: transparent;
-    width: 40px;
-    border: none;
-}
+			}
 
-::-ms-fill-lower { 
-    background: var(--slider-fill);
-}
+			.number::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				width: var(--control-height);
+				height: var(--control-height);
+				background: var(--slider-fill);
+				opacity: 1;
+				margin-top: calc(-1 * var(--control-height) / 2);
+				border-radius: var(--control-height);
+				border: 0;
+			}
 
-::-ms-thumb { 
-    background: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    box-sizing: border-box;
-}
+			::-moz-range-track {
+				width: 40px;
+				background: var(--slider-bg);
+			}
 
-::-ms-ticks-after { display: none; }
-::-ms-ticks-before { display: none; }
-::-ms-tooltip { display: none; }
+			::-moz-range-thumb {
+				background: #fff;
+				width: 40px;
+				height: 40px;
+				border: none;
+				border-radius: 0 !important;
+				box-shadow: -100vw 0 0 100vw var(--slider-fill);
+				box-sizing: border-box;
+			}
 
+			::-ms-track {
+				background: var(--slider-bg);
+				color: transparent;
+				width: 40px;
+				border: none;
+			}
+
+			::-ms-fill-lower {
+				background: var(--slider-fill);
+			}
+
+			::-ms-thumb {
+				background: #fff;
+				border: none;
+				width: 40px;
+				height: 40px;
+				box-sizing: border-box;
+			}
+
+			::-ms-ticks-after {
+				display: none;
+			}
+
+			::-ms-ticks-before {
+				display: none;
+			}
+
+			::-ms-tooltip {
+				display: none;
+			}
 		</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
-<!-- Legacy agent deprecated 2018-10-31 -->
-<script>
-  window._trackJs = { 
-    token: "ef33d6b45d7d4515b4196bef0c517067"
-    // for more configuration options, see https://docs.trackjs.com
-  };
-</script>
-<script src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+		<!-- Legacy agent deprecated 2018-10-31 -->
+		<script>
+			window._trackJs = {
+				token: "ef33d6b45d7d4515b4196bef0c517067"
+				// for more configuration options, see https://docs.trackjs.com
+			};
+		</script>
+		<script src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
 
 		<script src="js/zdog.dist.min.js"></script>
-		
+
 	</head>
+
 	<body>
-	
+
 		<canvas class="zdog-canvas" width="240" height="240"></canvas>
-<div class="buttons" id="gui-bottom">
-<a href="#" class="button" id="clear">CLR</a>
-<a href="#" class="button" id="zoom-out">-</a>
-<a href="#" class="button" id="zoom-in">+</a>
-<a href="#" class="button" id="drawmode"></a>
-<a href="#" class="button" id="rotate-left"></a>
-<a href="#" class="button" id="rotate-right"></a>
-<a href="#" class="button" id="rotate-up"></a>
-<a href="#" class="button" id="rotate-down"></a>
+		<div class="buttons" id="gui-bottom">
+			<a href="#" class="button" id="clear">CLR</a>
+			<a href="#" class="button" id="zoom-out">-</a>
+			<a href="#" class="button" id="zoom-in">+</a>
+			<a href="#" class="button" id="drawmode"></a>
+			<a href="#" class="button" id="rotate-left"></a>
+			<a href="#" class="button" id="rotate-right"></a>
+			<a href="#" class="button" id="rotate-up"></a>
+			<a href="#" class="button" id="rotate-down"></a>
 
-</div>
-<input type="color" id="colorpicker" value="#ff0000">
+		</div>
+		<input type="color" id="colorpicker" value="#ff0000">
 		<div id="konsoli"></div>
-<script>
-function log(msg,str){
-var str=str||false
-if(str)msg=JSON.stringify(msg)
-document.getElementById("konsoli").innerHTML+="\n"+msg
-}
-accData=[]
-</script>
-<!--<script src="js/deviceorientation.js"></script>-->
-<script>
-//temp
+		<script>
+			function log(msg, str) {
+				var str = str || false
+				if (str) msg = JSON.stringify(msg)
+				document.getElementById("konsoli").innerHTML += "\n" + msg
+			}
+			accData = []
+		</script>
+		<!--<script src="js/deviceorientation.js"></script>-->
+		<script>
+			//temp
 
-//from https://dev.opera.com/articles/w3c-device-orientation-usage/
-
-
-
-degtorad = Math.PI / 180; // Degree-to-Radian conversion
-deviceOrientationData = null;
-devicePos=null
-window.addEventListener('deviceorientation', function( event ) {
-	deviceOrientationData = event;
-}, false);
-
-accData=[]
+			//from https://dev.opera.com/articles/w3c-device-orientation-usage/
 
 
 
-/* disable devicemotion for now
-todo: velocity+pos integral from acc
-
-var evtest=window.addEventListener("devicemotion", accelerometerUpdate, true);
-
-
-function accelerometerUpdate(event) {
-
-   var aX = event.acceleration.x*10;
-   var aY = event.acceleration.y*10;
-   var aZ = event.acceleration.z*10;
-
-accData.push(event.acceleration)
-if(accData.length>3)accData.shift()
-
-var accPos={
-x:[],
-y:[],
-z:[]
-}
-
-accData.forEach(
- function(item,index){
-  for(var key in accPos){
-   accPos[key].push(item[key])
-  }
-})
-
-
-
-var avgPos={x:0,y:0,z:0}
-
-for(var key in accPos){
-avgPos[key]=accPos[key].reduce(
-function(total, amount, index, array){
-  total += amount
-  return total/array.length
-}, 0);
-
-}
-
-devicePos={
-x:avgPos.x*20,
-y:avgPos.y*20,
-z:avgPos.z*20
-}
-
-
-}
-
-*/
-
-currentScreenOrientation = window.orientation || 0; // active default
-window.addEventListener('orientationchange', function() {
-	currentScreenOrientation = window.orientation;
-}, false);
-			
-
-function getScreenTransformationQuaternion( screenOrientation ) {
-	var orientationAngle = screenOrientation ? screenOrientation * degtorad : 0;
-	var ang = orientationAngle;
-	ang=0
-	// Construct the screen transformation quaternion
-	var q_s = [Math.cos( -ang/2 ),0,0,Math.sin( -ang/2 )];
-	return q_s;
-}
-
-function getBaseQuaternion( alpha, beta, gamma ) {
-	var _x = beta  ? beta * degtorad : 0; // beta value
-	var _y = gamma ? gamma * degtorad : 0; // gamma value
-	var _z = alpha ? alpha * degtorad : 0; // alpha value
-
-	var cX = Math.cos( _x/2 );
-	var cY = Math.cos( _y/2 );
-	var cZ = Math.cos( _z/2 );
-	var sX = Math.sin( _x/2 );
-	var sY = Math.sin( _y/2 );
-	var sZ = Math.sin( _z/2 );
-
-	var w = cX * cY * cZ - sX * sY * sZ;
-	var x = sX * cY * cZ - cX * sY * sZ;
-	var y = cX * sY * cZ + sX * cY * sZ;
-	var z = cX * cY * sZ + sX * sY * cZ;
-
-	return [ w, x, y, z ];
-}
-
-function getWorldTransformationQuaternion() {
-	var worldAngle = 90 * degtorad;
-	var minusHalfAngle = - worldAngle / 2;
-	// Construct the world transformation quaternion
-	var q_w = [
-		Math.cos( minusHalfAngle ),
-		Math.sin( minusHalfAngle ),
-		0,
-		0
-	];
-	return q_w;
-}
-
-function quaternionMultiply( a, b ) {
-	var w = a[0] * b[0] - a[1] * b[1] - a[2] * b[2] - a[3] * b[3];
-	var x = a[1] * b[0] + a[0] * b[1] + a[2] * b[3] - a[3] * b[2];
-	var y = a[2] * b[0] + a[0] * b[2] + a[3] * b[1] - a[1] * b[3];
-	var z = a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1];
-
-	return [ w, x, y, z ];
-}
-
-function computeQuaternion() {
-
-	var quaternion = getBaseQuaternion(
-		deviceOrientationData.alpha,
-		deviceOrientationData.beta,
-		deviceOrientationData.gamma
-	); // q
-	
-	var worldTransform = getWorldTransformationQuaternion(); // q_w
-	var worldAdjustedQuaternion = quaternionMultiply( quaternion, worldTransform ); // q'_w
-	var screenTransform = getScreenTransformationQuaternion( currentScreenOrientation ); // q_s
-	var finalQuaternion = quaternionMultiply( worldAdjustedQuaternion, screenTransform ); // q'_s
-	
-	return finalQuaternion; // [ w, x, y, z ]
-}
-
-//p. ellul on stackoverflow https://stackoverflow.com/a/35448946
-
-function Quat2Angle(w, x, y, z) {
-	let pitch, roll, yaw;
-
-	const test = x * y + z * w;
-	// singularity at north pole
-	if (test > 0.499) {
-		yaw = Math.atan2(x, w) * 2;
-		pitch = Math.PI / 2;
-		roll = 0;
-		return [yaw,pitch,roll]
-	}
-
-	// singularity at south pole
-	if (test < -0.499) {
-		yaw = -2 * Math.atan2(x, w);
-		pitch = -Math.PI / 2;
-		roll = 0;
-		return [yaw,pitch,roll]
-	}
-
-	const sqx = x * x;
-	const sqy = y * y;
-	const sqz = z * z;
-
-	yaw = Math.atan2((2 * y * w) - (2 * x * z), 1 - (2 * sqy) - (2 * sqz));
-	pitch = Math.asin(2 * test);
-	roll = Math.atan2((2 * x * w) - (2 * y * z), 1 - (2 * sqx) - (2 * sqz));
-
-	return [yaw,pitch,roll]
-}
-
-
-//end dev o
-
-drawDirection=-1
-drawing=false
+			degtorad = Math.PI / 180; // Degree-to-Radian conversion
 			deviceOrientationData = null;
-devicePos=null
+			devicePos = null
+			byId("clear").addEventListener("click", function (e) {
+				e.preventDefault()
+				// feature detect
+				if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+					DeviceOrientationEvent.requestPermission()
+						.then(permissionState => {
+							if (permissionState === 'granted') {
+								window.addEventListener('deviceorientation', function (event) {
+									deviceOrientationData = event;
+								}, false);
+							}
+						})
+						.catch(console.error);
+				} else {
+					// handle regular non iOS 13+ devices
+				}
+				for (var i = rotDummy.children.length - 1; i > 2; i--) {
+					rotDummy.children[i].remove()
+				}
+			})
+
+
+
+
+
+			accData = []
+
+
+
+			/* disable devicemotion for now
+			todo: velocity+pos integral from acc
+			
+			var evtest=window.addEventListener("devicemotion", accelerometerUpdate, true);
+			
+			
+			function accelerometerUpdate(event) {
+			
+			   var aX = event.acceleration.x*10;
+			   var aY = event.acceleration.y*10;
+			   var aZ = event.acceleration.z*10;
+			
+			accData.push(event.acceleration)
+			if(accData.length>3)accData.shift()
+			
+			var accPos={
+			x:[],
+			y:[],
+			z:[]
+			}
+			
+			accData.forEach(
+			 function(item,index){
+			  for(var key in accPos){
+			   accPos[key].push(item[key])
+			  }
+			})
+			
+			
+			
+			var avgPos={x:0,y:0,z:0}
+			
+			for(var key in accPos){
+			avgPos[key]=accPos[key].reduce(
+			function(total, amount, index, array){
+			  total += amount
+			  return total/array.length
+			}, 0);
+			
+			}
+			
+			devicePos={
+			x:avgPos.x*20,
+			y:avgPos.y*20,
+			z:avgPos.z*20
+			}
+			
+			
+			}
+			
+			*/
+
+			currentScreenOrientation = window.orientation || 0; // active default
+			window.addEventListener('orientationchange', function () {
+				currentScreenOrientation = window.orientation;
+			}, false);
+
+
+			function getScreenTransformationQuaternion(screenOrientation) {
+				var orientationAngle = screenOrientation ? screenOrientation * degtorad : 0;
+				var ang = orientationAngle;
+				ang = 0
+				// Construct the screen transformation quaternion
+				var q_s = [Math.cos(-ang / 2), 0, 0, Math.sin(-ang / 2)];
+				return q_s;
+			}
+
+			function getBaseQuaternion(alpha, beta, gamma) {
+				var _x = beta ? beta * degtorad : 0; // beta value
+				var _y = gamma ? gamma * degtorad : 0; // gamma value
+				var _z = alpha ? alpha * degtorad : 0; // alpha value
+
+				var cX = Math.cos(_x / 2);
+				var cY = Math.cos(_y / 2);
+				var cZ = Math.cos(_z / 2);
+				var sX = Math.sin(_x / 2);
+				var sY = Math.sin(_y / 2);
+				var sZ = Math.sin(_z / 2);
+
+				var w = cX * cY * cZ - sX * sY * sZ;
+				var x = sX * cY * cZ - cX * sY * sZ;
+				var y = cX * sY * cZ + sX * cY * sZ;
+				var z = cX * cY * sZ + sX * sY * cZ;
+
+				return [w, x, y, z];
+			}
+
+			function getWorldTransformationQuaternion() {
+				var worldAngle = 90 * degtorad;
+				var minusHalfAngle = - worldAngle / 2;
+				// Construct the world transformation quaternion
+				var q_w = [
+					Math.cos(minusHalfAngle),
+					Math.sin(minusHalfAngle),
+					0,
+					0
+				];
+				return q_w;
+			}
+
+			function quaternionMultiply(a, b) {
+				var w = a[0] * b[0] - a[1] * b[1] - a[2] * b[2] - a[3] * b[3];
+				var x = a[1] * b[0] + a[0] * b[1] + a[2] * b[3] - a[3] * b[2];
+				var y = a[2] * b[0] + a[0] * b[2] + a[3] * b[1] - a[1] * b[3];
+				var z = a[3] * b[0] + a[0] * b[3] + a[1] * b[2] - a[2] * b[1];
+
+				return [w, x, y, z];
+			}
+
+			function computeQuaternion() {
+
+				var quaternion = getBaseQuaternion(
+					deviceOrientationData.alpha,
+					deviceOrientationData.beta,
+					deviceOrientationData.gamma
+				); // q
+
+				var worldTransform = getWorldTransformationQuaternion(); // q_w
+				var worldAdjustedQuaternion = quaternionMultiply(quaternion, worldTransform); // q'_w
+				var screenTransform = getScreenTransformationQuaternion(currentScreenOrientation); // q_s
+				var finalQuaternion = quaternionMultiply(worldAdjustedQuaternion, screenTransform); // q'_s
+
+				return finalQuaternion; // [ w, x, y, z ]
+			}
+
+			//p. ellul on stackoverflow https://stackoverflow.com/a/35448946
+
+			function Quat2Angle(w, x, y, z) {
+				let pitch, roll, yaw;
+
+				const test = x * y + z * w;
+				// singularity at north pole
+				if (test > 0.499) {
+					yaw = Math.atan2(x, w) * 2;
+					pitch = Math.PI / 2;
+					roll = 0;
+					return [yaw, pitch, roll]
+				}
+
+				// singularity at south pole
+				if (test < -0.499) {
+					yaw = -2 * Math.atan2(x, w);
+					pitch = -Math.PI / 2;
+					roll = 0;
+					return [yaw, pitch, roll]
+				}
+
+				const sqx = x * x;
+				const sqy = y * y;
+				const sqz = z * z;
+
+				yaw = Math.atan2((2 * y * w) - (2 * x * z), 1 - (2 * sqy) - (2 * sqz));
+				pitch = Math.asin(2 * test);
+				roll = Math.atan2((2 * x * w) - (2 * y * z), 1 - (2 * sqx) - (2 * sqz));
+
+				return [yaw, pitch, roll]
+			}
+
+
+			//end dev o
+
+			drawDirection = -1
+			drawing = false
+			deviceOrientationData = null;
+			devicePos = null
 			let isSpinning = true;
 
 			let illo = new Zdog.Illustration({
@@ -463,35 +498,35 @@ devicePos=null
 			});
 
 
-			
+
 			let rotDummy = new Zdog.Anchor({
 				addTo: illo
 			});
-qt=[0,0,0,0]
+			qt = [0, 0, 0, 0]
 			function animate(step) {
-				
-				if(deviceOrientationData!=null){
-					if(!drawing)qt=computeQuaternion()
-					
-					var angles=Quat2Angle(...qt)
-					
-					if(currentScreenOrientation==0){
-						illo.rotate.x=drawDirection*angles[2]
-						illo.rotate.y=drawDirection*angles[1]
-						illo.rotate.z=drawDirection*angles[0]
+
+				if (deviceOrientationData != null) {
+					if (!drawing) qt = computeQuaternion()
+
+					var angles = Quat2Angle(...qt)
+
+					if (currentScreenOrientation == 0) {
+						illo.rotate.x = drawDirection * angles[2]
+						illo.rotate.y = drawDirection * angles[1]
+						illo.rotate.z = drawDirection * angles[0]
 
 					}
-					else if(currentScreenOrientation==-90){					
-						illo.rotate.x=-angles[0]
-						illo.rotate.y=angles[1]
-						illo.rotate.z=-angles[2]
+					else if (currentScreenOrientation == -90) {
+						illo.rotate.x = -angles[0]
+						illo.rotate.y = angles[1]
+						illo.rotate.z = -angles[2]
 					}
-					else if(currentScreenOrientation==90){					
-						illo.rotate.x=angles[0]
-						illo.rotate.y=angles[1]
-						illo.rotate.z=-angles[2]
-					}					
-					
+					else if (currentScreenOrientation == 90) {
+						illo.rotate.x = angles[0]
+						illo.rotate.y = angles[1]
+						illo.rotate.z = -angles[2]
+					}
+
 					/*
 					frame=Math.floor(step/20)%illo.children.length;
 					for(var i=3;i<illo.children.length;i++){
@@ -501,381 +536,382 @@ qt=[0,0,0,0]
 					*/
 					illo.updateRenderGraph();
 				}
-				requestAnimationFrame( animate );
+				requestAnimationFrame(animate);
 			}
 			animate()
 
 
 
-Number.prototype.mod = function(n) {
-    return ((this%n)+n)%n;
-};
+			Number.prototype.mod = function (n) {
+				return ((this % n) + n) % n;
+			};
 
-function vecLength(vec){
-	return Math.sqrt(Math.pow(vec.x,2),Math.pow(vec.y,2))
-}
+			function vecLength(vec) {
+				return Math.sqrt(Math.pow(vec.x, 2), Math.pow(vec.y, 2))
+			}
 
-//world axis
-var grid = illo.width
-var axisColors=["#F00","#0F0","#00F"]
+			//world axis
+			var grid = illo.width
+			var axisColors = ["#F00", "#0F0", "#00F"]
 
-for(var i=0;i<3;i++){
-	var axis=new Zdog.Shape({
-		addTo: rotDummy,
-		path: [{ x: 0, y: 0, z:  0},{ x: (i==0)?grid:0, y: (i==1)?grid:0, z: (i==2)?grid:0 }],
-		closed: false,
-		stroke: 0.5,
-		color: axisColors[i],
-	});
-	axis.guide=true
-}	
-
-
-
-var colors=['#EE6621','#EEAA00','#663366']
-
-downCount=0
-zCount=-1
-
-prevX=0
-prevY=0
-prevZ=0
-x=0
-y=0
-z=0
-prevDX=0
-prevDY=0
-prevDZ=0
-devX=0
-devY=0
-devZ=0
-prevPosi={x:0,y:0,z:0}
-posi={x:0,y:0,z:0}
-
-var diff=illo.height-illo.width
-var diffHalf=diff/2
+			for (var i = 0; i < 3; i++) {
+				var axis = new Zdog.Shape({
+					addTo: rotDummy,
+					path: [{ x: 0, y: 0, z: 0 }, { x: (i == 0) ? grid : 0, y: (i == 1) ? grid : 0, z: (i == 2) ? grid : 0 }],
+					closed: false,
+					stroke: 0.5,
+					color: axisColors[i],
+				});
+				axis.guide = true
+			}
 
 
-function clamp(val,min,max){
-    return Math.max(
-        min, Math.min(max,val)
-    )
-}
 
-var dragger=new Zdog.Dragger({
-	startElement: '.zdog-canvas',
-  onDragStart(e) {
-drawing=true
-		dragCount=0
-		drawDirection=-1
-		prevX=x
-		prevY=y
-prevZ=z
-prevDX=0
-prevDY=0
-prevDZ=0
-devX=0
-devY=0
-devZ=0
-prevPosi={x:0,y:0,z:0}
-posi={x:0,y:0,z:0}
+			var colors = ['#EE6621', '#EEAA00', '#663366']
 
-x=(e.clientX-illo.width/2)*(1/illo.zoom)
-y=(e.clientY-illo.height/2)*(1/illo.zoom)
+			downCount = 0
+			zCount = -1
 
-z=illo.drawmode
-?Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*globals.Z*(1/illo.zoom)
-:globals.Z
-/*
-		var pt={
-			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
-			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
-		}
-		*/
-if(devicePos!=null)var posi={x:x+devicePos.x,y:y+devicePos.y,z:devicePos.z}
-else var posi={x:x,y:y,z:0}
-downCount++
-var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
+			prevX = 0
+			prevY = 0
+			prevZ = 0
+			x = 0
+			y = 0
+			z = 0
+			prevDX = 0
+			prevDY = 0
+			prevDZ = 0
+			devX = 0
+			devY = 0
+			devZ = 0
+			prevPosi = { x: 0, y: 0, z: 0 }
+			posi = { x: 0, y: 0, z: 0 }
 
-		this.shape=new Zdog.Shape({
-			addTo: rotDummy,
-			path:[
-				{x:x,y:y,z:z}
-			],
-			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
-			stroke: globals.stroke==null?Math.max(4,e.force*60):globals.stroke,
-			closed: false,
-			color: globals.color==null?clr:globals.color
-		});
-		
-		//this.shape.drawing=true
-		illo.updateRenderGraph();
-  },
-  onDragMove(e) {
-		//console.log(e)
-		
-		prevX=x
-		prevY=y
-prevZ=z
-prevDX=devX
-prevDY=devY
-prevDZ=devZ
-		
-if(devicePos!=null){
-devX=devicePos.x
-devY=devicePos.y
-devZ=devicePos.z
-}
-		x=(e.clientX-illo.width/2)*(1/illo.zoom)
-		y=(e.clientY-illo.height/2)*(1/illo.zoom)
-z=illo.drawmode
-?Math.sin(e.clientX/illo.width*Math.PI)*Math.sin((e.clientY-diffHalf)/illo.width*Math.PI)*globals.Z*(1/illo.zoom)
-:globals.Z
-/*
-		var pt={
-			x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
-			y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
-		}
-		*/
-if(devicePos!=null){
-var prevPosi={x:prevX+prevDX,y:prevY+prevDY,z:prevDZ}
- var posi={x:x+devX,y:y+devY,z:devZ}
-}
-else {
-var prevPosi={x:prevX,y:prevY,z:prevZ}
- var posi={x:x,y:y,z:z}
-}
-var clr=e.radiusX>25?'#FFF':colors[downCount%colors.length]
-		this.shape=new Zdog.Shape({
-			addTo: rotDummy,
-			path:[
-				prevPosi,posi
-			],
-			rotate:{x:-illo.rotate.x-rotDummy.rotate.x,y:-illo.rotate.y-rotDummy.rotate.y},
-			stroke: globals.stroke==null?Math.max(4,e.force*60):globals.stroke,
-			closed: false,
-			color: globals.color==null?clr:globals.color
-		});
-		
-		//this.shape.drawing=true
+			var diff = illo.height - illo.width
+			var diffHalf = diff / 2
 
-		//this.shape.path.push({x:x,y:y,z:0})
-		//this.shape.updatePath()
 
-		illo.updateRenderGraph();
-		dragCount++
-  },
-  onDragEnd(){
-drawDirection=-1
-drawing=false
-  		/*
-			for(var i=3;i<illo.children.length;i++){
-				illo.children[i].drawing=false
-			}  	
+			function clamp(val, min, max) {
+				return Math.max(
+					min, Math.min(max, val)
+				)
+			}
+
+			var dragger = new Zdog.Dragger({
+				startElement: '.zdog-canvas',
+				onDragStart(e) {
+					drawing = true
+					dragCount = 0
+					drawDirection = -1
+					prevX = x
+					prevY = y
+					prevZ = z
+					prevDX = 0
+					prevDY = 0
+					prevDZ = 0
+					devX = 0
+					devY = 0
+					devZ = 0
+					prevPosi = { x: 0, y: 0, z: 0 }
+					posi = { x: 0, y: 0, z: 0 }
+
+					x = (e.clientX - illo.width / 2) * (1 / illo.zoom)
+					y = (e.clientY - illo.height / 2) * (1 / illo.zoom)
+
+					z = illo.drawmode
+						? Math.sin(e.clientX / illo.width * Math.PI) * Math.sin((e.clientY - diffHalf) / illo.width * Math.PI) * globals.Z * (1 / illo.zoom)
+						: globals.Z
+					/*
+							var pt={
+								x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
+								y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
+							}
+							*/
+					if (devicePos != null) var posi = { x: x + devicePos.x, y: y + devicePos.y, z: devicePos.z }
+					else var posi = { x: x, y: y, z: 0 }
+					downCount++
+					var clr = e.radiusX > 25 ? '#FFF' : colors[downCount % colors.length]
+
+					this.shape = new Zdog.Shape({
+						addTo: rotDummy,
+						path: [
+							{ x: x, y: y, z: z }
+						],
+						rotate: { x: -illo.rotate.x - rotDummy.rotate.x, y: -illo.rotate.y - rotDummy.rotate.y },
+						stroke: globals.stroke == null ? Math.max(4, e.force * 60) : globals.stroke,
+						closed: false,
+						color: globals.color == null ? clr : globals.color
+					});
+
+					//this.shape.drawing=true
+					illo.updateRenderGraph();
+				},
+				onDragMove(e) {
+					//console.log(e)
+
+					prevX = x
+					prevY = y
+					prevZ = z
+					prevDX = devX
+					prevDY = devY
+					prevDZ = devZ
+
+					if (devicePos != null) {
+						devX = devicePos.x
+						devY = devicePos.y
+						devZ = devicePos.z
+					}
+					x = (e.clientX - illo.width / 2) * (1 / illo.zoom)
+					y = (e.clientY - illo.height / 2) * (1 / illo.zoom)
+					z = illo.drawmode
+						? Math.sin(e.clientX / illo.width * Math.PI) * Math.sin((e.clientY - diffHalf) / illo.width * Math.PI) * globals.Z * (1 / illo.zoom)
+						: globals.Z
+					/*
+							var pt={
+								x:x*Math.cos(-illo.rotate.z)-y*Math.sin(-illo.rotate.z),
+								y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
+							}
+							*/
+					if (devicePos != null) {
+						var prevPosi = { x: prevX + prevDX, y: prevY + prevDY, z: prevDZ }
+						var posi = { x: x + devX, y: y + devY, z: devZ }
+					}
+					else {
+						var prevPosi = { x: prevX, y: prevY, z: prevZ }
+						var posi = { x: x, y: y, z: z }
+					}
+					var clr = e.radiusX > 25 ? '#FFF' : colors[downCount % colors.length]
+					this.shape = new Zdog.Shape({
+						addTo: rotDummy,
+						path: [
+							prevPosi, posi
+						],
+						rotate: { x: -illo.rotate.x - rotDummy.rotate.x, y: -illo.rotate.y - rotDummy.rotate.y },
+						stroke: globals.stroke == null ? Math.max(4, e.force * 60) : globals.stroke,
+						closed: false,
+						color: globals.color == null ? clr : globals.color
+					});
+
+					//this.shape.drawing=true
+
+					//this.shape.path.push({x:x,y:y,z:0})
+					//this.shape.updatePath()
+
+					illo.updateRenderGraph();
+					dragCount++
+				},
+				onDragEnd() {
+					drawDirection = -1
+					drawing = false
+					/*
+					for(var i=3;i<illo.children.length;i++){
+						illo.children[i].drawing=false
+					}  	
+					*/
+				}
+
+			});
+
+			function byId(id) {
+				return document.getElementById(id)
+			}
+
+			byId("clear").addEventListener("click", function (e) {
+				e.preventDefault()
+				for (var i = rotDummy.children.length - 1; i > 2; i--) {
+					rotDummy.children[i].remove()
+				}
+			})
+
+			byId("zoom-out").addEventListener("click", function (e) {
+				e.preventDefault()
+				illo.zoom = illo.zoom / 2
+			})
+
+			byId("zoom-in").addEventListener("click", function (e) {
+				e.preventDefault()
+				illo.zoom = illo.zoom * 2
+			})
+
+			illo.drawmode = false
+
+			byId("drawmode").addEventListener("click", function (e) {
+				e.preventDefault()
+				byId("drawmode").classList.toggle("curved")
+				illo.drawmode = !illo.drawmode
+			})
+
+			var globals = { Z: 0, color: null, stroke: null }
+
+			Element.prototype.setAttributes = function (ps) {
+				for (var p in ps) { this.setAttribute(p, ps[p]) }
+			}
+
+			function byId(id) { return document.getElementById(id) }
+
+			var gui = document.createElement("DIV");
+			gui.setAttribute("id", "gui")
+			document.body.appendChild(gui)
+			gui.addEventListener("touchmove", function (e) {
+				e.preventDefault()
+			})
+
+			byId('gui-bottom').addEventListener("mousedown", function (e) {
+				e.preventDefault()
+			})
+
+			byId('gui-bottom').addEventListener("touchmove", function (e) {
+				e.preventDefault()
+			})
+
+			byId('colorpicker').addEventListener('input', function (e) {
+				globals.color = this.value
+			})
+			function createLabel(prop) {
+				var label = document.createElement("label")
+				var labelText = document.createElement("span")
+				labelText.innerHTML = prop
+				label.appendChild(labelText)
+				return label
+			}
+
+			function createSlider(minVal, maxVal, obj, prop, container) {
+				var label = createLabel(prop)
+				var slider = document.createElement("input")
+				slider.setAttributes({
+					"min": minVal,
+					"max": maxVal,
+					"step": 1,
+					"type": "range",
+					"tabindex": -1,
+					"value": obj[prop],
+					"class": "number"
+				})
+				var numBox = document.createElement("input")
+				numBox.setAttributes({
+					"type": "number",
+					"value": obj[prop],
+					"min": minVal,
+					"max": maxVal,
+					"step": 1
+				})
+
+				slider.addEventListener("input", function (val) {
+					obj[prop] = this.valueAsNumber;
+					numBox.value = this.valueAsNumber;
+				})
+				slider.addEventListener("mousedown", function (e) {
+					var mini = parseFloat(this.min)
+					var maxi = parseFloat(this.max)
+
+					var val = e.offsetX / this.offsetWidth * (Math.abs(mini) + maxi) + mini;
+					this.value = Math.round(val)
+					obj[prop] = this.valueAsNumber
+					numBox.value = this.valueAsNumber;
+				})
+				slider.addEventListener("touchmove", function (e) {
+					var mini = parseFloat(this.min)
+					var maxi = parseFloat(this.max)
+					var val = (e.touches[0].pageX - e.target.getBoundingClientRect().left) / this.offsetWidth * (Math.abs(mini) + maxi) + mini;
+					this.value = Math.round(val)
+					obj[prop] = this.valueAsNumber
+
+					numBox.value = this.valueAsNumber;
+				})
+
+				numBox.addEventListener("input", function (val) {
+					obj[prop] = this.valueAsNumber;
+					slider.value = this.valueAsNumber;
+				})
+				label.appendChild(slider)
+				label.appendChild(numBox)
+				container.appendChild(label)
+			}
+
+			createSlider(-illo.width / 2, illo.width / 2, globals, 'Z', gui)
+			createSlider(1, 100, globals, 'stroke', gui)
+
+
+			function rotate(obj, x, y) {
+				anime({
+					duration: 200,
+					easing: 'easeInOutSine',
+					targets: obj['rotate'],
+					x: obj['rotate']['x'] + x * Zdog.TAU / 4,
+					y: obj['rotate']['y'] + y * Zdog.TAU / 4,
+					update: function () {
+						//update the zdog render graph each frame
+						illo.updateRenderGraph();
+					}
+				});
+			}
+
+			byId('rotate-left').addEventListener('click', function (e) {
+				e.preventDefault()
+				rotate(rotDummy, 0, 1)
+			})
+			byId('rotate-right').addEventListener('click', function (e) {
+				e.preventDefault()
+				rotate(rotDummy, 0, -1)
+			})
+			byId('rotate-up').addEventListener('click', function (e) {
+				e.preventDefault()
+				rotate(rotDummy, 1, 0)
+			})
+			byId('rotate-down').addEventListener('click', function (e) {
+				e.preventDefault()
+				rotate(rotDummy, -1, 0)
+			})
+
+			/*
+
+				var dragger=new Zdog.Dragger({
+					startElement: '.zdog-canvas',
+					onDragStart(e){
+						prevX = e.clientX
+						prevY = e.clientY
+						currX = e.clientX
+						currY = e.clientY
+					},
+					onDragMove(e,x,y) {
+						prevX=currX
+						prevY=currY
+						currX=e.clientX
+						currY=e.clientY
+						var deltaX=currX-prevX
+						var deltaY=currY-prevY
+						rotDummy.rotate.x-=deltaY/100
+						rotDummy.rotate.y-=deltaX/100
+						illo.updateRenderGraph();
+					}
+				});
 			*/
-  }
 
-});
+			/*
 
-function byId(id){
-return document.getElementById(id)
-}
-			
-byId("clear").addEventListener("click",function(e){
-  e.preventDefault()
-  for(var i=rotDummy.children.length-1;i>2;i--){
-    rotDummy.children[i].remove()
-  }  	
-})
+			var video = document.createElement('video');
+			video.style.width = document.width + 'px';
+			video.style.height = document.height + 'px';
+			video.setAttribute('autoplay', '');
+			video.setAttribute('id','cam');
+			video.setAttribute('muted', '');
+			video.setAttribute('playsinline', '');
 
-byId("zoom-out").addEventListener("click",function(e){
-  e.preventDefault()
-  illo.zoom=illo.zoom/2
-})
+			var constraints = {
+			  audio: false,
+			  video: {
+			   facingMode: "environment"
+			  }
+			}
 
-byId("zoom-in").addEventListener("click",function(e){
-  e.preventDefault()
-  illo.zoom=illo.zoom*2
-})
+			navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+			  video.srcObject = stream;
+			});
 
-illo.drawmode=false
-
-byId("drawmode").addEventListener("click",function(e){
-  e.preventDefault()
-  byId("drawmode").classList.toggle("curved")
-  illo.drawmode=!illo.drawmode
-})
-
-var globals={Z:0, color: null, stroke: null}
-
-Element.prototype.setAttributes=function(ps) {
-for(var p in ps){this.setAttribute(p,ps[p])}
-}
-
-function byId(id){return document.getElementById(id)}
-
-var gui = document.createElement("DIV");
-gui.setAttribute("id","gui")
-document.body.appendChild(gui)
-gui.addEventListener("touchmove",function(e){
-e.preventDefault()
-})
-
-byId('gui-bottom').addEventListener("mousedown",function(e){
-e.preventDefault()
-})
-
-byId('gui-bottom').addEventListener("touchmove",function(e){
-e.preventDefault()
-})
-
-byId('colorpicker').addEventListener('input', function(e){
-globals.color=this.value
-})
-function createLabel(prop){
-	var label = document.createElement("label")
-	var labelText = document.createElement("span")
-	labelText.innerHTML=prop
-	label.appendChild(labelText)
-	return label
-}
-
-function createSlider(minVal,maxVal,obj,prop,container){
-	var label=createLabel(prop)
-	var slider = document.createElement("input")
-	slider.setAttributes({
-"min":minVal,
-"max":maxVal,
-"step":1,
-		"type":"range",
-		"tabindex":-1,
-		"value":obj[prop],
-		"class":"number"		
-	})
-	var numBox = document.createElement("input")
-	numBox.setAttributes({
-		"type":"number",
-		"value":obj[prop],
-"min":minVal,
-"max":maxVal,
-"step":1
-	})
-
-slider.addEventListener("input",function(val){
-		obj[prop]=this.valueAsNumber;
-		numBox.value=this.valueAsNumber;
-	})
-	slider.addEventListener("mousedown", function(e){
-var mini=parseFloat(this.min)
-var maxi=parseFloat(this.max)
-
-var val=e.offsetX/this.offsetWidth*(Math.abs(mini)+maxi)+mini;
-		this.value=Math.round(val)
-obj[prop]=this.valueAsNumber
-numBox.value=this.valueAsNumber;
-	})
-	slider.addEventListener("touchmove", function(e){
-var mini=parseFloat(this.min)
-var maxi=parseFloat(this.max)
-var val=(e.touches[0].pageX-e.target.getBoundingClientRect().left)/this.offsetWidth*(Math.abs(mini)+maxi)+mini;
-this.value=Math.round(val)
-obj[prop]=this.valueAsNumber
-
-		numBox.value=this.valueAsNumber;
-	})
-
-numBox.addEventListener("input",function(val){
-		obj[prop]=this.valueAsNumber;
-		slider.value=this.valueAsNumber;
-	})	
-	label.appendChild(slider)
-	label.appendChild(numBox)
-	container.appendChild(label)
-}
-
-createSlider(-illo.width/2, illo.width/2, globals,'Z',gui)
-createSlider(1, 100, globals,'stroke', gui)
-
-
-function rotate(obj,x,y){
- anime({
-	duration:200,
-  easing: 'easeInOutSine',
-	targets: obj['rotate'],
-	x: obj['rotate']['x']+ x*Zdog.TAU/4,
-y: obj['rotate']['y']+ y*Zdog.TAU/4,
-  update: function() {
-		//update the zdog render graph each frame
-		illo.updateRenderGraph();
-  }
-});
-}
-
-byId('rotate-left').addEventListener('click',function(e){
-e.preventDefault()
-rotate(rotDummy,0,1)
-})
-byId('rotate-right').addEventListener('click',function(e){
-e.preventDefault()
-rotate(rotDummy,0,-1)
-})
-byId('rotate-up').addEventListener('click',function(e){
-e.preventDefault()
-rotate(rotDummy,1,0)
-})
-byId('rotate-down').addEventListener('click',function(e){
-e.preventDefault()
-rotate(rotDummy,-1,0)
-})
-
-/*			
-
-	var dragger=new Zdog.Dragger({
-		startElement: '.zdog-canvas',
-		onDragStart(e){
-			prevX = e.clientX
-			prevY = e.clientY
-			currX = e.clientX
-			currY = e.clientY
-		},
-		onDragMove(e,x,y) {
-			prevX=currX
-			prevY=currY
-			currX=e.clientX
-			currY=e.clientY
-			var deltaX=currX-prevX
-			var deltaY=currY-prevY
-			rotDummy.rotate.x-=deltaY/100
-			rotDummy.rotate.y-=deltaX/100
-			illo.updateRenderGraph();
-		}
-	});
-*/			
-
-/*
-
-var video = document.createElement('video');
-video.style.width = document.width + 'px';
-video.style.height = document.height + 'px';
-video.setAttribute('autoplay', '');
-video.setAttribute('id','cam');
-video.setAttribute('muted', '');
-video.setAttribute('playsinline', '');
-
-var constraints = {
-  audio: false,
-  video: {
-   facingMode: "environment"
-  }
-}
-
-navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
-  video.srcObject = stream;
-});
-
-document.body.appendChild(video);
-*/
+			document.body.appendChild(video);
+			*/
 		</script>
 
 	</body>
+
 </html>

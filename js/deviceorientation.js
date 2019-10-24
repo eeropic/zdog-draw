@@ -6,19 +6,25 @@ degtorad = Math.PI / 180; // Degree-to-Radian conversion
 deviceOrientationData = null;
 devicePos=null
 
-if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-	DeviceOrientationEvent.requestPermission()
-	  .then(permissionState => {
-		if (permissionState === 'granted') {
+
+function onClick() {
+    // feature detect
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
 			window.addEventListener('deviceorientation', function( event ) {
 				deviceOrientationData = event;
 			}, false);
-		}
-	  })
-	  .catch(console.error);
-  } else {
-	// handle regular non iOS 13+ devices
+          }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
   }
+
+
 
 
 
