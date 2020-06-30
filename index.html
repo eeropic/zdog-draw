@@ -602,6 +602,8 @@ var globals = { Z: 0, color: null, stroke: null }
 			var dragger = new Zdog.Dragger({
 				startElement: '.zdog-canvas',
 				onDragStart(e) {
+window.alert(e.force)
+window.alert(e.targetTouches)
 					drawing = true
 					dragCount = 0
 					drawDirection = -1
