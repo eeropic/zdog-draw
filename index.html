@@ -569,6 +569,8 @@
 
 			var colors = ['#EE6621', '#EEAA00', '#663366']
 
+var globals = { Z: 0, color: null, stroke: null }
+
 			downCount = 0
 			zCount = -1
 
@@ -741,7 +743,7 @@
 				illo.drawmode = !illo.drawmode
 			})
 
-			var globals = { Z: 0, color: null, stroke: null }
+		
 
 			Element.prototype.setAttributes = function (ps) {
 				for (var p in ps) { this.setAttribute(p, ps[p]) }
