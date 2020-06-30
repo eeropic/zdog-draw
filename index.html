@@ -109,6 +109,15 @@
 				bottom: 0;
 			}
 
+#requestmotion {
+position: absolute;
+width: 200px;
+top: 320px;
+text-align:center;
+left:50%;
+margin-left:-100px;
+}
+
 			/*sliders*/
 
 			#gui {
@@ -275,6 +284,7 @@
 			<a href="#" class="button" id="rotate-down"></a>
 
 		</div>
+<a href="#" class="button" id="requestmotion">Allow device orientation</a>
 		<input type="color" id="colorpicker" value="#ff0000">
 		<div id="konsoli"></div>
 		<script>
@@ -296,7 +306,7 @@
 			degtorad = Math.PI / 180; // Degree-to-Radian conversion
 			deviceOrientationData = null;
 			devicePos = null
-			byId("clear").addEventListener("click", function (e) {
+			byId("requestmotion").addEventListener("click", function (e) {
 				e.preventDefault()
 				// feature detect
 				if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -312,7 +322,12 @@
 				} else {
 					// handle regular non iOS 13+ devices
 				}
-				for (var i = rotDummy.children.length - 1; i > 2; i--) {
+				
+			})
+
+byId("clear").addEventListener("click", function (e) {
+				e.preventDefault();
+for (var i = rotDummy.children.length - 1; i > 2; i--) {
 					rotDummy.children[i].remove()
 				}
 			})
@@ -569,7 +584,7 @@
 
 			var colors = ['#EE6621', '#EEAA00', '#663366']
 
-var globals = { Z: 0, color: null, stroke: null }
+var globals = { Z: 0, color: null, stroke: 4 }
 
 			downCount = 0
 			zCount = -1
@@ -602,8 +617,6 @@ var globals = { Z: 0, color: null, stroke: null }
 			var dragger = new Zdog.Dragger({
 				startElement: '.zdog-canvas',
 				onDragStart(e) {
-window.alert(e.force)
-window.alert(e.targetTouches)
 					drawing = true
 					dragCount = 0
 					drawDirection = -1
