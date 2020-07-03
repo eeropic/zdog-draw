@@ -502,6 +502,12 @@ for (var i = rotDummy.children.length - 1; i > 2; i--) {
 
 			//end dev o
 
+//from tim down https://stackoverflow.com/a/39077686
+const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => {
+  const hex = x.toString(16)
+  return hex.length === 1 ? '0' + hex : hex
+}).join('')
+
 			drawDirection = -1
 			drawing = false
 			deviceOrientationData = null;
@@ -585,7 +591,7 @@ for (var i = rotDummy.children.length - 1; i > 2; i--) {
 
 			var colors = ['#EE6621', '#EEAA00', '#663366']
 
-var globals = { Z: 0, color: "#FFFFFF", stroke: 4 }
+var globals = { Z: 0, color: null, stroke: 4 }
 
 			downCount = 0
 			zCount = -1
@@ -645,10 +651,14 @@ var globals = { Z: 0, color: "#FFFFFF", stroke: 4 }
 								y:y*Math.cos(-illo.rotate.z)+x*Math.sin(-illo.rotate.z)
 							}
 							*/
+
 					if (devicePos != null) var posi = { x: x + devicePos.x, y: y + devicePos.y, z: devicePos.z }
 					else var posi = { x: x, y: y, z: 0 }
 					downCount++
-					var clr = e.radiusX > 25 ? '#FFF' : colors[downCount % colors.length]
+					var clr = rgbToHex(
+(x + illo.width/2)/illo.width*255,
+(y + illo.width/2)/illo.width*255,
+(z + illo.width/2)/illo.width*255)
 
 					this.shape = new Zdog.Shape({
 						addTo: rotDummy,
