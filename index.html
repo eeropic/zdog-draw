@@ -656,9 +656,9 @@ var globals = { Z: 0, color: null, stroke: 4 }
 					else var posi = { x: x, y: y, z: 0 }
 					downCount++
 					let clr = rgbToHex(
-Math.floor((x + illo.width/2)/illo.width*255),
-Math.floor((y + illo.width/2)/illo.width*255),
-Math.floor((z + illo.width/2)/illo.width*255))
+clamp(Math.floor((x + illo.width/2)/illo.width*255),0,255),
+clamp(Math.floor((y + illo.width/2)/illo.width*255),0,255),
+clamp(Math.floor((z + illo.width/2)/illo.width*255),0,255))
 
 					this.shape = new Zdog.Shape({
 						addTo: rotDummy,
@@ -708,10 +708,11 @@ Math.floor((z + illo.width/2)/illo.width*255))
 						var prevPosi = { x: prevX, y: prevY, z: prevZ }
 						var posi = { x: x, y: y, z: z }
 					}
-				let clr = rgbToHex(
-Math.floor((x + illo.width/2)/illo.width*255),
-Math.floor((y + illo.width/2)/illo.width*255),
-Math.floor((z + illo.width/2)/illo.width*255))
+			let clr = rgbToHex(
+clamp(Math.floor((x + illo.width/2)/illo.width*255),0,255),
+clamp(Math.floor((y + illo.width/2)/illo.width*255),0,255),
+clamp(Math.floor((z + illo.width/2)/illo.width*255),0,255))
+
 if(prevPosi.x != posi.x || prevPosi.y != posi.y || prevPosi.z != posi.z){
 					this.shape = new Zdog.Shape({
 						addTo: rotDummy,
