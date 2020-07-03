@@ -708,7 +708,10 @@ var globals = { Z: 0, color: null, stroke: 4 }
 						var prevPosi = { x: prevX, y: prevY, z: prevZ }
 						var posi = { x: x, y: y, z: z }
 					}
-					var clr = e.radiusX > 25 ? '#FFF' : colors[downCount % colors.length]
+					var clr = rgbToHex(
+(x + illo.width/2)/illo.width*255,
+(y + illo.width/2)/illo.width*255,
+(z + illo.width/2)/illo.width*255)
 					this.shape = new Zdog.Shape({
 						addTo: rotDummy,
 						path: [
